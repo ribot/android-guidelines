@@ -106,11 +106,14 @@ Resource files in the values folder should be __plural__, e.g. `strings.xml`, `s
 
 You must never do the following:
 
-	void setServerPort(String value) {
-    	try {
-    	    serverPort = Integer.parseInt(value);
-    	} catch (NumberFormatException e) { }
-	}
+```java
+void setServerPort(String value) {
+    try {
+        serverPort = Integer.parseInt(value);
+    } catch (NumberFormatException e) { }
+}
+```
+
 _While you may think that your code will never encounter this error condition or that it is not important to handle it, ignoring exceptions like above creates mines in your code for someone else to trip over some day. You must handle every Exception in your code in some principled way. The specific handling varies depending on the case._ - ([Android code style guidelines](https://source.android.com/source/code-style.html))
 
 See alternatives [here](https://source.android.com/source/code-style.html#dont-ignore-exceptions).
@@ -119,14 +122,16 @@ See alternatives [here](https://source.android.com/source/code-style.html#dont-i
 
 You should not do this:
 
-	try {
-	    someComplicatedIOFunction();        // may throw IOException 
-	    someComplicatedParsingFunction();   // may throw ParsingException 
-	    someComplicatedSecurityFunction();  // may throw SecurityException 
-	    // phew, made it all the way 
-	} catch (Exception e) {                 // I'll just catch all exceptions 
-	    handleError();                      // with one generic handler!
-	}	
+```java
+try {
+    someComplicatedIOFunction();        // may throw IOException 
+    someComplicatedParsingFunction();   // may throw ParsingException 
+    someComplicatedSecurityFunction();  // may throw SecurityException 
+    // phew, made it all the way 
+} catch (Exception e) {                 // I'll just catch all exceptions 
+    handleError();                      // with one generic handler!
+}
+```
 
 See the reason why and some alternatives [here](https://source.android.com/source/code-style.html#dont-catch-generic-exception)
 
@@ -156,14 +161,16 @@ Fields should be defined at the __top of the file__ and they should follow the n
 
 Example:
 
-	public class MyClass {
-	    public static final int SOME_CONSTANT = 42;
-	    public int publicField;
-	    private static MyClass sSingleton;
-    	int mPackagePrivate;
-    	private int mPrivate;
-    	protected int mProtected;
-	}
+```java
+public class MyClass {
+    public static final int SOME_CONSTANT = 42;
+    public int publicField;
+    private static MyClass sSingleton;
+    int mPackagePrivate;
+    private int mPrivate;
+    protected int mProtected;
+}
+```
 	
 ### 2.2.3 Treat acronyms as words
 
@@ -178,41 +185,51 @@ Example:
 
 Use __4 space__ idents for blocks:
 
-	if (x == 1) {
-	    x++;
-	}
-	
+```java
+if (x == 1) {
+    x++;
+}
+```
+
 Use __8 space__ idents for line wraps:
 
-	Instrument i =
-            someLongExpression(that, wouldNotFit, on, one, line);
-       
+```java
+Instrument i =
+        someLongExpression(that, wouldNotFit, on, one, line);
+```
+
 ### 2.2.5 Use standard brace style
 
 Braces go on the same line as the code before them.
 
-	class MyClass {
-	    int func() {
-	        if (something) {
-	            // ...
-	        } else if (somethingElse) {
-	            // ...
-	        } else {
-	            // ...
-	        }
-	    }
-	}
+```java
+class MyClass {
+    int func() {
+        if (something) {
+            // ...
+        } else if (somethingElse) {
+            // ...
+        } else {
+            // ...
+        }
+    }
+}
+```
 
 Braces around the statements are required unless the condition and the body fit on one line. 
 
 This is good: 
 
-	if (condition) body();
+```java
+if (condition) body();
+```
 
 This is __bad__:
 
-	if (condition)
-        body();  // bad!
+```java
+if (condition)
+    body();  // bad!
+````
         
 ### 2.2.6 Use standard Java annotations
 
@@ -261,19 +278,23 @@ Use the logging methods provided by the `Log` class to print out error messages 
 
 As a general rule, we use the class name as tag and we define it as a `static final` field at the top of the file. For example:
 
-	public class MyClass {
-	    private static final String TAG = "MyClass";
-	    
-	    public myMethod() {
-	        Log.e(TAG, "My error message");
-	    }
-	}
+```java
+public class MyClass {
+    private static final String TAG = "MyClass";
+    
+    public myMethod() {
+        Log.e(TAG, "My error message");
+    }
+}
+```
 	
 VERBOSE and DEBUG logs __must__ be disable on relase builds. It is also recommendable to disable INFORMATION, WARNING and ERROR logs but you may want to keep them enable if you think they may be useful to identify issues on release builds. If you decide to leave them enable, you have to make sure that they are not leaking private information such as email addresses, user ids, etc. 
 
 To only show logs on debug builds:
 
-	if (BuildConfig.DEBUG) Log.d(TAG, "The value of x is " + x);
+```java
+if (BuildConfig.DEBUG) Log.d(TAG, "The value of x is " + x);
+```
 	
 ### 2.2.10 Class member ordering 
 
@@ -289,49 +310,52 @@ There is no single correct solution for this but using a __logical__ and __consi
 
 Example:
 
-	public class MainActivity extends Activity {
-	
-		private String mTitle;
-	    private TextView mTextViewTitle;
-	    
-	    public void setTitle(String title) {
-	    	mTitle = title;
-	    }
-	    
-	    @Override 
-	    public void onCreate() {
-	        ...
-	    }
-	    
-	    private void setUpView() {
-	        ...
-	    }
-	    
-	    static class AnInnerClass {
-	    
-	    }
-	
-	} 
-	
+```java
+public class MainActivity extends Activity {
+
+	private String mTitle;
+    private TextView mTextViewTitle;
+    
+    public void setTitle(String title) {
+    	mTitle = title;
+    }
+    
+    @Override 
+    public void onCreate() {
+        ...
+    }
+    
+    private void setUpView() {
+        ...
+    }
+    
+    static class AnInnerClass {
+    
+    }
+
+} 
+```
+
 If your class is extending and __Android component__ such as an Activity or a Fragment, it is a good practise to order the override methods so that they __match the component's lifecycle__. For example, if you have an Activity that implements `onCreate()`, `onDestroy()`, `onPause()` and `onResume()`, then the correct order is:
 
+```java
+public class MainActivity extends Activity {
 
-	public class MainActivity extends Activity {
-	
-		//Order matches Activity lifecycle	
-	    @Override 
-	    public void onCreate() {} 
-	    
-	    @Override 
-	    public void onResume() {}
-	    
-	    @Override 
-	    public void onPause() {}
-	    
-	    @Override 
-	    public void onDestory() {}
-	
-	} 
+	//Order matches Activity lifecycle	
+    @Override 
+    public void onCreate() {} 
+    
+    @Override 
+    public void onResume() {}
+    
+    @Override 
+    public void onPause() {}
+    
+    @Override 
+    public void onDestory() {}
+
+}
+```
 
 ### 2.2.11 Parameter ordering in methods
 
@@ -341,12 +365,13 @@ The opposite case are __callback__ interfaces that should always be the __last__
 
 Examples:
 
-	// Context always go first
-	public User loadUser(Context context, int userId);
-	
-	// Callbacks always go last
-	public void loadUserAsync(Context context, int userId, UserCallback callback);
+```java
+// Context always go first
+public User loadUser(Context context, int userId);
 
+// Callbacks always go last
+public void loadUserAsync(Context context, int userId, UserCallback callback);
+```
 
 ### 2.2.13 String constants, naming and values
 
@@ -366,15 +391,16 @@ Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a B
 
 Example:
 
-	// Note the value of the field is the same as the name to avoid duplication issues
-	static final String PREF_EMAIL = "PREF_EMAIL";
-	static final String BUNDLE_AGE = "BUNDLE_AGE";
-	static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
-	
-	// Intent-related items use full package name as value
-	static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
-	static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
-	
+```java
+// Note the value of the field is the same as the name to avoid duplication issues
+static final String PREF_EMAIL = "PREF_EMAIL";
+static final String BUNDLE_AGE = "BUNDLE_AGE";
+static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
+
+// Intent-related items use full package name as value
+static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
+static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
+```
 
 ### 2.2.14 Arguments in Fragments and Activities
 
@@ -382,34 +408,40 @@ When data is passed into an Activity or Fragment via `Intents` or a `Bundles`, t
 
 It's also a good practise to add a comment on top of the class to explain what values are expected and whether they are optional or required. 
 
-	// This fragments requires an argument with key KEY_ARG_USER and type User
-	public class UserFragment extends Fragment {
-	
-	    public static final String KEY_ARG_USER = "KEY_ARG_USER";
-	
-		public onCreate() {
-		    Bundle args = getArguments();
-		    User user = args.getParcelable(KEY_ARG_USER);
-		}
+```java
+// This fragments requires an argument with key KEY_ARG_USER and type User
+public class UserFragment extends Fragment {
+
+    public static final String KEY_ARG_USER = "KEY_ARG_USER";
+
+	public onCreate() {
+	    Bundle args = getArguments();
+	    User user = args.getParcelable(KEY_ARG_USER);
 	}
+}
+```
 	
 And this is how to pass the User object into the Fragment:
 
-	UserFragment fragment = new UserFragment;
-	Bundle args = new Bundle();
-	args.putParcelable(UserFragment.KEY_ARG_USER, user);
-	fragment.setArguments(args)
-	addFragment(fragment);
-	
+```java
+UserFragment fragment = new UserFragment;
+Bundle args = new Bundle();
+args.putParcelable(UserFragment.KEY_ARG_USER, user);
+fragment.setArguments(args)
+addFragment(fragment);
+```
+
 When using Fragments with arguments, it's a good practise to define a `static public` method in the `Fragment` that handles the creation of itself. Following the example above, the `Fragment` could expose this method:
 
-	public static UserFragment createInstance(User user) {
-		UserFragment fragment = new UserFragment;
-		Bundle args = new Bundle();
-		args.putParcelable(KEY_ARG_USER, user);
-		fragment.setArguments(args)
-		return fragment;
-	}
+```java
+public static UserFragment createInstance(User user) {
+	UserFragment fragment = new UserFragment;
+	Bundle args = new Bundle();
+	args.putParcelable(KEY_ARG_USER, user);
+	fragment.setArguments(args)
+	return fragment;
+}
+```
 	
 If we add this method, then `KEY_ARG_USER` doesn't need to be public. 
 	
@@ -422,19 +454,23 @@ When an XML element doesn't have any content, you __must__ use self closing tags
 
 This is good:
 
-	<TextView
-        android:id="@+id/text_view_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+```xml
+<TextView
+	android:id="@+id/text_view_profile"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" />
+```
         
 This is __bad__ :
 
-	<!-- Don't do this! -->
-	<TextView
-        android:id="@+id/text_view_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-    </TextView>
+```xml
+<!-- Don't do this! -->
+<TextView
+    android:id="@+id/text_view_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+</TextView>
+```
 
  
 
@@ -456,19 +492,22 @@ IDs should be prefixed with the name of the element in lowercase underscore. For
 
 Image view example:
 
-	<ImageView
-        android:id="@+id/image_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-        
+```xml
+<ImageView
+    android:id="@+id/image_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+```
+
 Menu example:
 
-	<menu>
-    	<item
-            android:id="@+id/menu_done"
-            android:title="Done" />
-    </menu>
-    
+```xml
+<menu>
+	<item
+        android:id="@+id/menu_done"
+        android:title="Done" />
+</menu>
+```
 
 #### 2.3.2.2 Strings
 
@@ -502,11 +541,12 @@ As a general rule you should try to group similar attributes together. A good wa
 
 Test methods should use underscore to separte what is being tested from the specific case being tested, i.e.  `testMethod_specificCase1`, `testMethod_specificCase2`. 
 
-	void testSignUp_wrongPassword() {
-    	...
-	}
-	
-	void testSignUp_goodData() {
-    	...
-	}
-	
+```java
+void testSignUp_wrongPassword() {
+	...
+}
+
+void testSignUp_goodData() {
+	...
+}
+```

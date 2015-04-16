@@ -215,7 +215,7 @@ class MyClass {
 
 Braces around the statements are required unless the condition and the body fit on one line. 
 
-This is good: 
+If the condition and the body fit in one line shorter than the max line length, it is recommended __not__ to use braces like the example below.
 
 ```java
 if (condition) body();
@@ -600,7 +600,7 @@ The name of the tests must start with `should` followed by the expected behaviou
 
 ### 2.4.2 Espresso tests
 
-Every Espresso test class must target an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g `SignInActivityTest`
+Every Espresso test class must target an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g. `SignInActivityTest`
 
 When using the Espresso api is a common practise to place chained method in new lines. 
 

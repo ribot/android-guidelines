@@ -12,16 +12,13 @@ New projects should follow the Android Gradle project structure that is defined 
 	* activity
 	* dialog
 	* widget
+	* adapter
 * service
 * data
 	* remote
 	* local
 	* model	 
 * util
- 
-#### Tests
-* test
-	* util
 
 ## 1.3 File naming 
 
@@ -229,7 +226,7 @@ This is __bad__:
 ```java
 if (condition)
     body();  // bad!
-````
+```
         
 ### 2.2.6 Use standard Java annotations
 
@@ -404,48 +401,102 @@ static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 
 ### 2.2.14 Arguments in Fragments and Activities
 
-When data is passed into an Activity or Fragment via `Intents` or a `Bundles`, the keys for the different values __must__ follow the rules described in the section above. In addition, the constant should be defined in the `Activity` or `Fragment` class as `public`. 
+When data is passed into an `Activity `or `Fragment` via `Intents` or a `Bundles`, the keys for the different values __must__ follow the rules described in the section above.
 
-It's also a good practise to add a comment on top of the class to explain what values are expected and whether they are optional or required. 
+When an `Activity` or `Fragment` expect arguments, it should provide a `static public` method that facilitate the creation of the `Fragment` or `Intent`.
+
+In the case of Activities the method is usually called `getStartIntent()`
 
 ```java
-// This fragments requires an argument with key KEY_ARG_USER and type User
-public class UserFragment extends Fragment {
-
-    public static final String KEY_ARG_USER = "KEY_ARG_USER";
-
-	public onCreate() {
-	    Bundle args = getArguments();
-	    User user = args.getParcelable(KEY_ARG_USER);
-	}
+public static Intent getStartIntent(Context context, User user) {
+	Intent intent = new Intent(context, ThisActivity.class);
+	intent.putParcelableExtra(EXTRA_USER, user);
+	return intent;
 }
 ```
-	
-And this is how to pass the User object into the Fragment:
+
+For Fragments it's named `newInstance()` and it handles the creation of the Fragment with the right arguments. 
 
 ```java
-UserFragment fragment = new UserFragment;
-Bundle args = new Bundle();
-args.putParcelable(UserFragment.KEY_ARG_USER, user);
-fragment.setArguments(args)
-addFragment(fragment);
-```
-
-When using Fragments with arguments, it's a good practise to define a `static public` method in the `Fragment` that handles the creation of itself. Following the example above, the `Fragment` could expose this method:
-
-```java
-public static UserFragment createInstance(User user) {
+public static UserFragment newInstance(User user) {
 	UserFragment fragment = new UserFragment;
 	Bundle args = new Bundle();
-	args.putParcelable(KEY_ARG_USER, user);
+	args.putParcelable(ARGUMENT_USER, user);
 	fragment.setArguments(args)
 	return fragment;
 }
 ```
-	
-If we add this method, then `KEY_ARG_USER` doesn't need to be public. 
-	
 
+__Note__ these methods should go at the top of the class before `onCreate()`
+
+### 2.2.15 Line length limit
+
+Code lines should not exceed __100 characters__. If the line is longer than this limit there are usually two options to reduce its length:
+
+* Extract a local variable or method (Preferable).
+* Apply line-wrapping to divide a single line into multiple ones. 
+
+There are two __exceptions__ where is possible to have lines longer than 100:
+
+* Lines that are not possible to split, e.g. long URLs in comments.
+* `package` and `import` statements. 
+
+#### 2.2.15.1 Line-wrapping strategies
+
+There isn't an exact formula that explains how to line-wrap and quite often different solutions are valid. However there are a few rules that can be applied to common cases.
+
+__Method chain case__ 
+
+When multiple methods are chained in the same line - for example when using Builders - every call to a method should go in its own line, breaking the line before the `.`
+
+```java
+Picasso.with(context).load("http://ribot.co.uk/images/sexyjoe.jpg").into(imageView);
+```
+
+```java
+Picasso.with(context)
+        .load("http://ribot.co.uk/images/sexyjoe.jpg")
+        .into(imageView);
+```
+
+__Long parameters case__
+
+When a method has many parameters or its parameters are very long we should break the line after every comma `,`
+
+```java
+loadPicture(context, "http://ribot.co.uk/images/sexyjoe.jpg", mImageViewProfilePicture, clickListener, "Title of the picture");
+```
+
+```java
+loadPicture(context,
+        "http://ribot.co.uk/images/sexyjoe.jpg",
+        mImageViewProfilePicture,
+        clickListener,
+        "Title of the picture");
+```
+
+### 2.2.16 RxJava chains styling 
+
+Rx chains of operators require line-wrapping. Every operator must go in a new line and the line should be broken before the `.`
+
+```java
+public Observable<Location> syncLocations() {
+    return mDatabaseHelper.getAllLocations()
+            .concatMap(new Func1<Location, Observable<? extends Location>>() {
+                @Override
+                 public Observable<? extends Location> call(Location location) {
+                     return mConcurService.getLocation(location.id);
+                 }
+            })
+            .retry(new Func2<Integer, Throwable, Boolean>() {
+                 @Override
+                 public Boolean call(Integer numRetries, Throwable throwable) {
+                     return throwable instanceof RetrofitError;
+                 }
+            });
+}
+```
+	
 ## 2.3 XML style rules
 
 ### 2.3.1 Use self closing tags
@@ -472,7 +523,6 @@ This is __bad__ :
 </TextView>
 ```
 
- 
 
 ### 2.3.2 Resources naming 
 
@@ -537,16 +587,25 @@ As a general rule you should try to group similar attributes together. A good wa
 4. Other layout attributes, sorted alphabetically
 5. Remaining attributes, sorted alphabetically
 
-## 2.4 Javatests style rules 
+## 2.4 Tests style rules 
 
-Test methods should use underscore to separte what is being tested from the specific case being tested, i.e.  `testMethod_specificCase1`, `testMethod_specificCase2`. 
+### 2.4.1 Unit tests 
+
+The test classes should match the name of the class that the tests are targeting followed by `Test`. For example, If we create a test class that contains test for the `DataManager`, we should name it `DataManagerTest`.
+
+The name of the tests must start with `should` followed by the expected behaviour. For example:
+
+* `shouldLoadUserData()`
+* `shouldThrowExceptionWhenLoadingUser()`
+
+### 2.4.2 Espresso tests
+
+Every Espresso test class must target an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g `SignInActivityTest`
+
+When using the Espresso api is a common practise to place chained method in new lines. 
 
 ```java
-void testSignUp_wrongPassword() {
-	...
-}
-
-void testSignUp_goodData() {
-	...
-}
+onView(withId(R.id.view))
+        .perform(scrollTo())
+        .check(matches(isDisplayed()))
 ```

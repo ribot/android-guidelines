@@ -403,7 +403,7 @@ static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 
 When data is passed into an `Activity `or `Fragment` via `Intents` or a `Bundles`, the keys for the different values __must__ follow the rules described in the section above.
 
-When an `Activity` or `Fragment` expect arguments, it should provide a `static public` method that facilitate the creation of the `Fragment` or `Intent`.
+When an `Activity` or `Fragment` expect arguments, it should provide a `static public` method that facilitates the creation of the `Fragment` or `Intent`.
 
 In the case of Activities the method is usually called `getStartIntent()`
 

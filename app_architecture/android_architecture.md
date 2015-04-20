@@ -16,6 +16,6 @@ Looking at the diagram from right to left:
 	- __Retrofit services__ : [Retrofit](http://square.github.io/retrofit) interfaces that talk to Restful APIs, each different API will have its own Retrofit service. They return RX Observables. 
 
 * __Data Manager (Data layer)__: It's the heart of the architecture. It keeps a reference to every helper class and uses them to satisfy the requests coming from the data layer. Its methods make intensive use of Rx operators to combine, transform or filter the output coming from the helpers in order to generate the desired output ready for the UI layer to display. It returns Observables that emit models. 
-* __Activities, Fragments, etc (UI layer)__: Standard Android components that subscribe to the Observables returned by the Data Manager and displays the results to the user. They also handle user interactions such as clicks and act accordingly by calling the appropriate method in the Data Manager.  
+* __Activities, Fragments, etc (UI layer)__: Standard Android components that subscribe to the Observables returned by the Data Manager and display the results to the user. They also handle user interactions such as clicks and act accordingly by calling the appropriate method in the Data Manager.  
 
 * __Event Bus__: It allows UI layer components to be notified of certain events that happen in the data layer. The data manager posts events that then Activities and Fragments can subscribe to. 

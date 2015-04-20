@@ -1,6 +1,6 @@
-# Android Apps Architecture 
+# Architecture Guidelines
 
-Our architecture consists of two layer.
+The architecture of our Android apps is structured in two layers. 
 
 * __UI Layer__: this is where Activities, Fragments and other standard Android components live. It's responsible for displaying the data received from the data layer to the user as well as handling its interactions and inputs (click listeners, etc.)
 

@@ -427,7 +427,9 @@ public static UserFragment newInstance(User user) {
 }
 ```
 
-__Note__ these methods should go at the top of the class before `onCreate()`
+__Note 1__: these methods should go at the top of the class before `onCreate()`
+
+__Note 2__: if we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class. 
 
 ### 2.2.15 Line length limit
 

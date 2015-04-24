@@ -6,7 +6,7 @@ The architecture of our Android apps is structured in two layers.
 
 * __Data Layer__: this is responsible for retrieving, saving, caching and massaging data so it is provided to the UI layer in its optimal form to be displayed. It can communicate with local databases and other data stores as well as with restful APIs or third party SDKs. It is divided in two parts: a group of helpers and a `DataManager`. The number of helpers vary between project and each of them has a very specific function, e.g. talking to an API or saving data in `SharedPreferences`. The `DataManager` combines and transforms the outputs from different helper using Rx operators so it can provide meaningful data to the UI layer. 
 
-![](achitecture_diagram.png)
+![](architecture_diagram.png)
 
 Looking at the diagram from right to left: 
 

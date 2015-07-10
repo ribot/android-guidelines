@@ -25,4 +25,7 @@
 - [Calligraphy](https://github.com/chrisjenx/Calligraphy)
 - [PagerSlidingTabStrip] (https://github.com/astuetz/PagerSlidingTabStrip)
 
+### Logging & Debugging
+- [Timber](https://github.com/JakeWharton/timber/)
+
 For a list of other useful libraries visit [android arsenal](http://android-arsenal.com). Do also ask other Android devs here what libraries we’ve used recently as for a lot of things, what’s best changes very quickly.

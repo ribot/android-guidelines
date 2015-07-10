@@ -2,7 +2,7 @@
 
 ## Standard Test Libraries
 
- - [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso)
+ - [Espresso](https://developer.android.com/training/testing/ui-testing/espresso-testing.html)
  - [Robolectric](http://robolectric.org/)
  - [Mockito](https://github.com/mockito/mockito)
  - JUnit 

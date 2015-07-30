@@ -81,7 +81,7 @@ Layout files should match the name of the Android components that they are inten
 | AdapterView item | ---                    | `item_person.xml`             |
 | Partial layout   | ---                    | `partial_stats_bar.xml`       |
 
-A slighly different case is when we are creating a layout that is going to be infladed by an `Adapter`, e.g to populate a `ListView`. In this case, the name of the layout should start with `item_`
+A slighly different case is when we are creating a layout that is going to be inflated by an `Adapter`, e.g to populate a `ListView`. In this case, the name of the layout should start with `item_`
 
 Note that there are cases where these rules will not be possible to apply. For example, when creating layout files that are intended to be part of other layouts. In this case you should use the prefix `partial_`
 

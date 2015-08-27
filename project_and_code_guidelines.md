@@ -477,6 +477,25 @@ loadPicture(context,
         "Title of the picture");
 ```
 
+__Long operations case__
+
+When there are too much operators in one line or name of variable is too long, we should break the line before every operator,
+
+```java
+if (condition1 && condition2 && someComplexCondition3 && maybeAnotherCondition4) {
+    // Do something
+}
+``` 
+
+```java
+if (condition1 
+    && condition2 
+    && someComplexCondition3 
+    && maybeAnotherCondition4) {
+        // Do something
+}
+```
+
 ### 2.2.16 RxJava chains styling 
 
 Rx chains of operators require line-wrapping. Every operator must go in a new line and the line should be broken before the `.`

@@ -2,36 +2,20 @@
 
 ## 1.1 Project structure 
 
-New projects should follow the Android Gradle project structure that is defined on the [Android Gradle plugin user guide](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure). The [BoilerPlate](https://github.com/ribot/android-boilerplate) project is a good reference.
+New projects should follow the Android Gradle project structure that is defined on the [Android Gradle plugin user guide](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure). The [ribot Boilerplate](https://github.com/ribot/android-boilerplate) project is a good reference to start from.
 
-## 1.2 Package structure 
+## 1.2 File naming 
 
-#### App
-* ui
-	* fragment
-	* activity
-	* dialog
-	* widget
-	* adapter
-* service
-* data
-	* remote
-	* local
-	* model	 
-* util
-
-## 1.3 File naming 
-
-### 1.3.1 Class files
+### 1.2.1 Class files
 Class names are written in [UpperCamelCase](http://en.wikipedia.org/wiki/CamelCase). 
 
 For classes that extend an Android component, the name of the class should end with the name of the component; for example: `SignInActivity`, `SignInFragment`, `ImageUploaderService`, `ChangePasswordDialog`.
 
-### 1.3.1 Resources files
+### 1.2.1 Resources files
 
 Resources file names are written in __lowercase_underscore__. 
 
-#### 1.3.1.1 Drawable files
+#### 1.2.1.1 Drawable files
  
 Naming conventions for drawables:
 
@@ -69,7 +53,7 @@ Naming conventions for selector states:
 | Selected     | `_selected`     | `btn_order_selected.9.png`  |
 
 
-#### 1.3.1.2 Layout files
+#### 1.2.1.2 Layout files
 
 Layout files should match the name of the Android components that they are intended for but moving the top level component name to the beginning. For example, if we are creating a layout for the `SignInActivity`, the name of the layout file should be `activity_sign_in.xml`.
 
@@ -85,13 +69,13 @@ A slighly different case is when we are creating a layout that is going to be in
 
 Note that there are cases where these rules will not be possible to apply. For example, when creating layout files that are intended to be part of other layouts. In this case you should use the prefix `partial_`
 
-#### 1.3.1.3 Menu files  
+#### 1.2.1.3 Menu files  
 
 Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be use in the `UserActivity`, then the name of the file should be `activity_user.xml`
 
 A good practise is to not include the word `menu` as part of the name because these files are already located in directory called menu. 
 
-#### 1.3.1.4 Values files
+#### 1.2.1.4 Values files
 
 Resource files in the values folder should be __plural__, e.g. `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
@@ -487,7 +471,7 @@ public Observable<Location> syncLocations() {
             .concatMap(new Func1<Location, Observable<? extends Location>>() {
                 @Override
                  public Observable<? extends Location> call(Location location) {
-                     return mConcurService.getLocation(location.id);
+                     return mRetrofitService.getLocation(location.id);
                  }
             })
             .retry(new Func2<Integer, Throwable, Boolean>() {
@@ -593,18 +577,22 @@ As a general rule you should try to group similar attributes together. A good wa
 
 ### 2.4.1 Unit tests 
 
-The test classes should match the name of the class that the tests are targeting followed by `Test`. For example, If we create a test class that contains test for the `DataManager`, we should name it `DataManagerTest`.
+Test classes should match the name of the class that the tests are targeting followed by `Test`. For example, If we create a test class that contains test for the `DatabaseHelper`, we should name it `DatabaseHelperTest`.
 
-The name of the tests must start with `should` followed by the expected behaviour. For example:
+Tests methods are annotated with `@Test` and should generally start with the name of the method that is being tested followed by a precondition and/or expected behaviour. 
 
-* `shouldLoadUserData()`
-* `shouldThrowExceptionWhenLoadingUser()`
+* Template: `@Test void methodNamePreconditionExpectedBehaviour()`
+* Example: `@Test void signInWithEmptyEmailFails()`
+
+Precondition and/or expected behaviour may not always be required if the test is clear enough without them. 
+
+Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it's recommendable to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see what tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture). 
 
 ### 2.4.2 Espresso tests
 
-Every Espresso test class must target an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g. `SignInActivityTest`
+Every Espresso test class usually targets an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g. `SignInActivityTest`
 
-When using the Espresso api is a common practise to place chained method in new lines. 
+When using the Espresso API is a common practise to place chained method in new lines. 
 
 ```java
 onView(withId(R.id.view))

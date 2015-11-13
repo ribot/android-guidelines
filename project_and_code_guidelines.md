@@ -577,9 +577,9 @@ As a general rule you should try to group similar attributes together. A good wa
 
 ### 2.4.1 Unit tests 
 
-Test classes should match the name of the class that the tests are targeting followed by `Test`. For example, If we create a test class that contains test for the `DatabaseHelper`, we should name it `DatabaseHelperTest`.
+Test classes should match the name of the class that the tests are targeting, followed by `Test`. For example, if we create a test class that contains tests for the `DatabaseHelper`, we should name it `DatabaseHelperTest`.
 
-Tests methods are annotated with `@Test` and should generally start with the name of the method that is being tested followed by a precondition and/or expected behaviour. 
+Test methods are annotated with `@Test` and should generally start with the name of the method that is being tested, followed by a precondition and/or expected behaviour. 
 
 * Template: `@Test void methodNamePreconditionExpectedBehaviour()`
 * Example: `@Test void signInWithEmptyEmailFails()`
@@ -592,7 +592,7 @@ Sometimes a class may contain a large amount of methods, that at the same time r
 
 Every Espresso test class usually targets an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g. `SignInActivityTest`
 
-When using the Espresso API is a common practise to place chained method in new lines. 
+When using the Espresso API is a common practise to place chained methods in new lines. 
 
 ```java
 onView(withId(R.id.view))

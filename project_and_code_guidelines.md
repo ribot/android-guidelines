@@ -212,7 +212,9 @@ if (condition)
     body();  // bad!
 ```
         
-### 2.2.6 Use standard Java annotations
+### 2.2.6 Annotations 
+
+#### 2.2.6.1 Annotations practices
 
 According to the Android code style guide, the standard practices for some of the predefined annotations in Java are:
 
@@ -222,6 +224,26 @@ According to the Android code style guide, the standard practices for some of th
 
 More information about annotations guidelines can be found [here](http://source.android.com/source/code-style.html#use-standard-java-annotations).
 
+#### 2.2.6.2 Annotations style
+
+__Classes, Methods and Constructors__
+
+When annotations are applied to a class, method or constructor they are listed after the documentation block and should appear as __one annotation per line__ .
+
+```java
+/* This is the documentation block about the class */
+@AnnotationA
+@AnnotationB
+public class MyAnnotatedClass { }
+```
+
+__Fields__
+
+Annotations applying to fields should be listed __on the same line__, unless the line reaches the maximum line length.
+
+```java
+@Nullable @Mock DataManager mDataManager;
+``` 
 
 ### 2.2.7 Limit variable scope 
 

@@ -431,6 +431,24 @@ There are two __exceptions__ where is possible to have lines longer than 100:
 
 There isn't an exact formula that explains how to line-wrap and quite often different solutions are valid. However there are a few rules that can be applied to common cases.
 
+__Break at operators__
+
+When the line is broken at an operator, the break comes __before__ the operator. For example:
+
+```java
+int longName = anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne
+        + theFinalOne;
+```
+
+__Assignment Operator Exception__ 
+
+An exception to the break at operators rule is the assignment operator `=`, where the line break should happen __after__ the operator. 
+
+```java
+int longName = 
+        anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne + theFinalOne;
+```
+
 __Method chain case__ 
 
 When multiple methods are chained in the same line - for example when using Builders - every call to a method should go in its own line, breaking the line before the `.`

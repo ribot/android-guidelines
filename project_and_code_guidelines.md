@@ -199,7 +199,7 @@ class MyClass {
 
 Braces around the statements are required unless the condition and the body fit on one line. 
 
-If the condition and the body fit on one line and that line is shorter than the max line length, then do __not__ use braces e.g.
+If the condition and the body fit on one line and that line is shorter than the max line length, then braces are not required, e.g.
 
 ```java
 if (condition) body();

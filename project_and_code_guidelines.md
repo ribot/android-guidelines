@@ -1,22 +1,22 @@
 # 1. Project guidelines
 
-## 1.1 Project structure 
+## 1.1 Project structure
 
 New projects should follow the Android Gradle project structure that is defined on the [Android Gradle plugin user guide](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure). The [ribot Boilerplate](https://github.com/ribot/android-boilerplate) project is a good reference to start from.
 
-## 1.2 File naming 
+## 1.2 File naming
 
 ### 1.2.1 Class files
-Class names are written in [UpperCamelCase](http://en.wikipedia.org/wiki/CamelCase). 
+Class names are written in [UpperCamelCase](http://en.wikipedia.org/wiki/CamelCase).
 
 For classes that extend an Android component, the name of the class should end with the name of the component; for example: `SignInActivity`, `SignInFragment`, `ImageUploaderService`, `ChangePasswordDialog`.
 
 ### 1.2.1 Resources files
 
-Resources file names are written in __lowercase_underscore__. 
+Resources file names are written in __lowercase_underscore__.
 
 #### 1.2.1.1 Drawable files
- 
+
 Naming conventions for drawables:
 
 
@@ -24,7 +24,7 @@ Naming conventions for drawables:
 |--------------| ------------------|-----------------------------|
 | Action bar   | `ab_`             | `ab_stacked.9.png`          |
 | Button       | `btn_`	            | `btn_send_pressed.9.png`    |
-| Dialog       | `dialog_`         | `dialog_top.9.png`          | 
+| Dialog       | `dialog_`         | `dialog_top.9.png`          |
 | Divider      | `divider_`        | `divider_horizontal.9.png`  |
 | Icon         | `ic_`	            | `ic_star.png`               |
 | Menu         | `menu_	`           | `menu_submenu_bg.9.png`     |
@@ -34,7 +34,7 @@ Naming conventions for drawables:
 Naming conventions for icons (taken from [Android iconography guidelines](http://developer.android.com/design/style/iconography.html)):
 
 | Asset Type                      | Prefix             | Example                      |
-| --------------------------------| ----------------   | ---------------------------- | 
+| --------------------------------| ----------------   | ---------------------------- |
 | Icons                           | `ic_`              | `ic_star.png`                |
 | Launcher icons                  | `ic_launcher`      | `ic_launcher_calendar.png`   |
 | Menu icons and Action Bar icons | `ic_menu`          | `ic_menu_archive.png`        |
@@ -65,21 +65,21 @@ Layout files should match the name of the Android components that they are inten
 | AdapterView item | ---                    | `item_person.xml`             |
 | Partial layout   | ---                    | `partial_stats_bar.xml`       |
 
-A slighly different case is when we are creating a layout that is going to be inflated by an `Adapter`, e.g to populate a `ListView`. In this case, the name of the layout should start with `item_`
+A slightly different case is when we are creating a layout that is going to be inflated by an `Adapter`, e.g to populate a `ListView`. In this case, the name of the layout should start with `item_`.
 
-Note that there are cases where these rules will not be possible to apply. For example, when creating layout files that are intended to be part of other layouts. In this case you should use the prefix `partial_`
+Note that there are cases where these rules will not be possible to apply. For example, when creating layout files that are intended to be part of other layouts. In this case you should use the prefix `partial_`.
 
-#### 1.2.1.3 Menu files  
+#### 1.2.1.3 Menu files
 
-Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be use in the `UserActivity`, then the name of the file should be `activity_user.xml`
+Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be used in the `UserActivity`, then the name of the file should be `activity_user.xml`
 
-A good practise is to not include the word `menu` as part of the name because these files are already located in directory called menu. 
+A good practice is to not include the word `menu` as part of the name because these files are already located in the `menu` directory.
 
 #### 1.2.1.4 Values files
 
 Resource files in the values folder should be __plural__, e.g. `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
-# 2 Code guidelines 
+# 2 Code guidelines
 
 ## 2.1 Java language rules
 
@@ -98,18 +98,18 @@ void setServerPort(String value) {
 _While you may think that your code will never encounter this error condition or that it is not important to handle it, ignoring exceptions like above creates mines in your code for someone else to trip over some day. You must handle every Exception in your code in some principled way. The specific handling varies depending on the case._ - ([Android code style guidelines](https://source.android.com/source/code-style.html))
 
 See alternatives [here](https://source.android.com/source/code-style.html#dont-ignore-exceptions).
-	
+
 ### 2.1.2 Don't catch generic exception
 
 You should not do this:
 
 ```java
 try {
-    someComplicatedIOFunction();        // may throw IOException 
-    someComplicatedParsingFunction();   // may throw ParsingException 
-    someComplicatedSecurityFunction();  // may throw SecurityException 
-    // phew, made it all the way 
-} catch (Exception e) {                 // I'll just catch all exceptions 
+    someComplicatedIOFunction();        // may throw IOException
+    someComplicatedParsingFunction();   // may throw ParsingException
+    someComplicatedSecurityFunction();  // may throw SecurityException
+    // phew, made it all the way
+} catch (Exception e) {                 // I'll just catch all exceptions
     handleError();                      // with one generic handler!
 }
 ```
@@ -129,9 +129,9 @@ This is good: `import foo.Bar;`
 
 See more info [here](https://source.android.com/source/code-style.html#fully-qualify-imports)
 
-## 2.2 Java style rules 
+## 2.2 Java style rules
 
-### 2.2.1 Fields definition and naming 
+### 2.2.1 Fields definition and naming
 
 Fields should be defined at the __top of the file__ and they should follow the naming rules listed below.
 
@@ -152,19 +152,19 @@ public class MyClass {
     protected int mProtected;
 }
 ```
-	
+
 ### 2.2.3 Treat acronyms as words
 
 | Good           | Bad            |
 | -------------- | -------------- |
-| `XmlHttpRequest` | `XMLHTTPRequest` | 
-| `getCustomerId`  | `getCustomerID`  | 
+| `XmlHttpRequest` | `XMLHTTPRequest` |
+| `getCustomerId`  | `getCustomerID`  |
 | `String url`     | `String URL`     |
 | `long id`        | `long ID`        |
 
 ### 2.2.4 Use spaces for indentation
 
-Use __4 space__ idents for blocks:
+Use __4 space__ indents for blocks:
 
 ```java
 if (x == 1) {
@@ -172,7 +172,7 @@ if (x == 1) {
 }
 ```
 
-Use __8 space__ idents for line wraps:
+Use __8 space__ indents for line wraps:
 
 ```java
 Instrument i =
@@ -197,7 +197,7 @@ class MyClass {
 }
 ```
 
-Braces around the statements are required unless the condition and the body fit on one line. 
+Braces around the statements are required unless the condition and the body fit on one line.
 
 If the condition and the body fit on one line and that line is shorter than the max line length, then braces are not required, e.g.
 
@@ -211,8 +211,8 @@ This is __bad__:
 if (condition)
     body();  // bad!
 ```
-        
-### 2.2.6 Annotations 
+
+### 2.2.6 Annotations
 
 #### 2.2.6.1 Annotations practices
 
@@ -222,13 +222,13 @@ According to the Android code style guide, the standard practices for some of th
 
 * `@SuppressWarnings`: The @SuppressWarnings annotation should only be used under circumstances where it is impossible to eliminate a warning. If a warning passes this "impossible to eliminate" test, the @SuppressWarnings annotation must be used, so as to ensure that all warnings reflect actual problems in the code.
 
-More information about annotations guidelines can be found [here](http://source.android.com/source/code-style.html#use-standard-java-annotations).
+More information about annotation guidelines can be found [here](http://source.android.com/source/code-style.html#use-standard-java-annotations).
 
 #### 2.2.6.2 Annotations style
 
 __Classes, Methods and Constructors__
 
-When annotations are applied to a class, method or constructor they are listed after the documentation block and should appear as __one annotation per line__ .
+When annotations are applied to a class, method, or constructor, they are listed after the documentation block and should appear as __one annotation per line__ .
 
 ```java
 /* This is the documentation block about the class */
@@ -243,15 +243,15 @@ Annotations applying to fields should be listed __on the same line__, unless the
 
 ```java
 @Nullable @Mock DataManager mDataManager;
-``` 
+```
 
-### 2.2.7 Limit variable scope 
+### 2.2.7 Limit variable scope
 
-_The scope of local variables should be kept to a minimum (Effective Java Item 29). By doing so, you increase the readability and maintainability of your code and reduce the likelihood of error. Each variable should be declared in the innermost block that encloses all uses of the variable._ 
+_The scope of local variables should be kept to a minimum (Effective Java Item 29). By doing so, you increase the readability and maintainability of your code and reduce the likelihood of error. Each variable should be declared in the innermost block that encloses all uses of the variable._
 
 _Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#limit-variable-scope))
 
-### 2.2.8 Order import statements 
+### 2.2.8 Order import statements
 
 If you are using an IDE such as Android Studio, you don't have to worry about this because your IDE is already obeying these rules. If not, have a look below.
 
@@ -260,18 +260,18 @@ The ordering of import statements is:
 1. Android imports
 2. Imports from third parties (com, junit, net, org)
 3. java and javax
-4. Same project imports 
+4. Same project imports
 
 To exactly match the IDE settings, the imports should be:
 
-* Alphabetical within each grouping, with capital letters before lower case letters (e.g. Z before a).
+* Alphabetically ordered within each grouping, with capital letters before lower case letters (e.g. Z before a).
 * There should be a blank line between each major grouping (android, com, junit, net, org, java, javax).
 
 More info [here](https://source.android.com/source/code-style.html#limit-variable-scope)
 
 ### 2.2.9 Logging guidelines
 
-Use the logging methods provided by the `Log` class to print out error messages or other information that may be useful for developers to identifiy issues:
+Use the logging methods provided by the `Log` class to print out error messages or other information that may be useful for developers to identify issues:
 
 * `Log.v(String tag, String msg)` (verbose)
 * `Log.d(String tag, String msg)` (debug)
@@ -284,28 +284,28 @@ As a general rule, we use the class name as tag and we define it as a `static fi
 ```java
 public class MyClass {
     private static final String TAG = "MyClass";
-    
+
     public myMethod() {
         Log.e(TAG, "My error message");
     }
 }
 ```
-	
-VERBOSE and DEBUG logs __must__ be disable on relase builds. It is also recommendable to disable INFORMATION, WARNING and ERROR logs but you may want to keep them enable if you think they may be useful to identify issues on release builds. If you decide to leave them enable, you have to make sure that they are not leaking private information such as email addresses, user ids, etc. 
+
+VERBOSE and DEBUG logs __must__ be disabled on release builds. It is also recommended to disable INFORMATION, WARNING and ERROR logs but you may want to keep them enabled if you think they may be useful to identify issues on release builds. If you decide to leave them enabled, you have to make sure that they are not leaking private information such as email addresses, user ids, etc.
 
 To only show logs on debug builds:
 
 ```java
 if (BuildConfig.DEBUG) Log.d(TAG, "The value of x is " + x);
 ```
-	
-### 2.2.10 Class member ordering 
+
+### 2.2.10 Class member ordering
 
 There is no single correct solution for this but using a __logical__ and __consistent__ order will improve code learnability and readability. It is recommendable to use the following order:
 
-1. Constants 
-2. Fields 
-3. Constructors 
+1. Constants
+2. Fields
+3. Constructors
 4. Override methods and callbacks (public or private)
 5. Public methods
 6. Private methods
@@ -318,44 +318,44 @@ public class MainActivity extends Activity {
 
 	private String mTitle;
     private TextView mTextViewTitle;
-    
+
     public void setTitle(String title) {
     	mTitle = title;
     }
-    
-    @Override 
+
+    @Override
     public void onCreate() {
         ...
     }
-    
+
     private void setUpView() {
         ...
     }
-    
+
     static class AnInnerClass {
-    
+
     }
 
-} 
+}
 ```
 
-If your class is extending and __Android component__ such as an Activity or a Fragment, it is a good practise to order the override methods so that they __match the component's lifecycle__. For example, if you have an Activity that implements `onCreate()`, `onDestroy()`, `onPause()` and `onResume()`, then the correct order is:
+If your class is extending an __Android component__ such as an Activity or a Fragment, it is a good practice to order the override methods so that they __match the component's lifecycle__. For example, if you have an Activity that implements `onCreate()`, `onDestroy()`, `onPause()` and `onResume()`, then the correct order is:
 
 ```java
 public class MainActivity extends Activity {
 
-	//Order matches Activity lifecycle	
-    @Override 
-    public void onCreate() {} 
-    
-    @Override 
+	//Order matches Activity lifecycle
+    @Override
+    public void onCreate() {}
+
+    @Override
     public void onResume() {}
-    
-    @Override 
+
+    @Override
     public void onPause() {}
-    
-    @Override 
-    public void onDestory() {}
+
+    @Override
+    public void onDestroy() {}
 
 }
 ```
@@ -369,28 +369,28 @@ The opposite case are __callback__ interfaces that should always be the __last__
 Examples:
 
 ```java
-// Context always go first
+// Context always goes first
 public User loadUser(Context context, int userId);
 
 // Callbacks always go last
 public void loadUserAsync(Context context, int userId, UserCallback callback);
 ```
 
-### 2.2.13 String constants, naming and values
+### 2.2.13 String constants, naming, and values
 
-Many elements of the Android SDK such as `SharedPreferences`, `Bundle` or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
+Many elements of the Android SDK such as `SharedPreferences`, `Bundle`, or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
 
-When using one of these components, you __must__ define the keys as a `static final` fields and they should be prefixed as indicaded below. 
+When using one of these components, you __must__ define the keys as a `static final` fields and they should be prefixed as indicated below.
 
 | Element            | Field Name Prefix |
 | -----------------  | ----------------- |
 | SharedPreferences  | `PREF_`             |
-| Bundle             | `BUNDLE_`           | 
-| Fragment Arguments | `ARGUMENT_`         |   
+| Bundle             | `BUNDLE_`           |
+| Fragment Arguments | `ARGUMENT_`         |
 | Intent Extra       | `EXTRA_`            |
 | Intent Action      | `ACTION_`           |
 
-Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a Bundle. However, because this is a quite common use of Bundles, we define a different prefix for them. 
+Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a Bundle. However, because this is a quite common use of Bundles, we define a different prefix for them.
 
 Example:
 
@@ -407,11 +407,11 @@ static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 
 ### 2.2.14 Arguments in Fragments and Activities
 
-When data is passed into an `Activity `or `Fragment` via `Intents` or a `Bundles`, the keys for the different values __must__ follow the rules described in the section above.
+When data is passed into an `Activity `or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
 
-When an `Activity` or `Fragment` expect arguments, it should provide a `static public` method that facilitates the creation of the `Fragment` or `Intent`.
+When an `Activity` or `Fragment` expects arguments, it should provide a `public static` method that facilitates the creation of the relevant `Intent` or `Fragment`.
 
-In the case of Activities the method is usually called `getStartIntent()`
+In the case of Activities the method is usually called `getStartIntent()`:
 
 ```java
 public static Intent getStartIntent(Context context, User user) {
@@ -421,7 +421,7 @@ public static Intent getStartIntent(Context context, User user) {
 }
 ```
 
-For Fragments it's named `newInstance()` and it handles the creation of the Fragment with the right arguments. 
+For Fragments it is named `newInstance()` and handles the creation of the Fragment with the right arguments:
 
 ```java
 public static UserFragment newInstance(User user) {
@@ -433,21 +433,21 @@ public static UserFragment newInstance(User user) {
 }
 ```
 
-__Note 1__: these methods should go at the top of the class before `onCreate()`
+__Note 1__: These methods should go at the top of the class before `onCreate()`.
 
-__Note 2__: if we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class. 
+__Note 2__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
 
 ### 2.2.15 Line length limit
 
 Code lines should not exceed __100 characters__. If the line is longer than this limit there are usually two options to reduce its length:
 
-* Extract a local variable or method (Preferable).
-* Apply line-wrapping to divide a single line into multiple ones. 
+* Extract a local variable or method (preferable).
+* Apply line-wrapping to divide a single line into multiple ones.
 
-There are two __exceptions__ where is possible to have lines longer than 100:
+There are two __exceptions__ where it is possible to have lines longer than 100:
 
 * Lines that are not possible to split, e.g. long URLs in comments.
-* `package` and `import` statements. 
+* `package` and `import` statements.
 
 #### 2.2.15.1 Line-wrapping strategies
 
@@ -462,16 +462,16 @@ int longName = anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne
         + theFinalOne;
 ```
 
-__Assignment Operator Exception__ 
+__Assignment Operator Exception__
 
-An exception to the break at operators rule is the assignment operator `=`, where the line break should happen __after__ the operator. 
+An exception to the `break at operators` rule is the assignment operator `=`, where the line break should happen __after__ the operator.
 
 ```java
-int longName = 
+int longName =
         anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne + theFinalOne;
 ```
 
-__Method chain case__ 
+__Method chain case__
 
 When multiple methods are chained in the same line - for example when using Builders - every call to a method should go in its own line, breaking the line before the `.`
 
@@ -487,7 +487,7 @@ Picasso.with(context)
 
 __Long parameters case__
 
-When a method has many parameters or its parameters are very long we should break the line after every comma `,`
+When a method has many parameters or its parameters are very long, we should break the line after every comma `,`
 
 ```java
 loadPicture(context, "http://ribot.co.uk/images/sexyjoe.jpg", mImageViewProfilePicture, clickListener, "Title of the picture");
@@ -501,7 +501,7 @@ loadPicture(context,
         "Title of the picture");
 ```
 
-### 2.2.16 RxJava chains styling 
+### 2.2.16 RxJava chains styling
 
 Rx chains of operators require line-wrapping. Every operator must go in a new line and the line should be broken before the `.`
 
@@ -522,12 +522,12 @@ public Observable<Location> syncLocations() {
             });
 }
 ```
-	
+
 ## 2.3 XML style rules
 
 ### 2.3.1 Use self closing tags
 
-When an XML element doesn't have any content, you __must__ use self closing tags.
+When an XML element doesn\'t have any contents, you __must__ use self closing tags.
 
 This is good:
 
@@ -537,11 +537,11 @@ This is good:
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content" />
 ```
-        
+
 This is __bad__ :
 
 ```xml
-<!-- Don't do this! -->
+<!-- Don\'t do this! -->
 <TextView
     android:id="@+id/text_view_profile"
     android:layout_width="wrap_content"
@@ -550,9 +550,9 @@ This is __bad__ :
 ```
 
 
-### 2.3.2 Resources naming 
+### 2.3.2 Resources naming
 
-Resource IDs and names are written in __lowercase_underscore__
+Resource IDs and names are written in __lowercase_underscore__.
 
 #### 2.3.2.1 ID naming
 
@@ -562,8 +562,8 @@ IDs should be prefixed with the name of the element in lowercase underscore. For
 | Element            | Prefix            |
 | -----------------  | ----------------- |
 | `TextView`           | `text_`             |
-| `ImageView`          | `image_`            | 
-| `Button`             | `button_`           |   
+| `ImageView`          | `image_`            |
+| `Button`             | `button_`           |
 | `Menu`               | `menu_`             |
 
 Image view example:
@@ -587,14 +587,14 @@ Menu example:
 
 #### 2.3.2.2 Strings
 
-String names start with a prefix that indentifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section then you should follow the rules below:
+String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn\'t belong__ to any section, then you should follow the rules below:
 
 
 | Prefix             | Description                           |
 | -----------------  | --------------------------------------|
 | `error_`             | An error message                      |
-| `msg_`               | A regular information message         |       
-| `title_`             | A title, i.e. a dialog title          | 
+| `msg_`               | A regular information message         |
+| `title_`             | A title, i.e. a dialog title          |
 | `action_`            | An action such as "Save" or "Create"  |
 
 
@@ -603,7 +603,7 @@ String names start with a prefix that indentifies the section they belong to. Fo
 
 Unless the rest of resources, style names are written in __UpperCamelCase__.
 
-### 2.3.3 Attributes ordering 
+### 2.3.3 Attributes ordering
 
 As a general rule you should try to group similar attributes together. A good way of ordering the most common attributes is:
 
@@ -613,26 +613,26 @@ As a general rule you should try to group similar attributes together. A good wa
 4. Other layout attributes, sorted alphabetically
 5. Remaining attributes, sorted alphabetically
 
-## 2.4 Tests style rules 
+## 2.4 Tests style rules
 
-### 2.4.1 Unit tests 
+### 2.4.1 Unit tests
 
-Test classes should match the name of the class that the tests are targeting, followed by `Test`. For example, if we create a test class that contains tests for the `DatabaseHelper`, we should name it `DatabaseHelperTest`.
+Test classes should match the name of the class the tests are targeting, followed by `Test`. For example, if we create a test class that contains tests for the `DatabaseHelper`, we should name it `DatabaseHelperTest`.
 
-Test methods are annotated with `@Test` and should generally start with the name of the method that is being tested, followed by a precondition and/or expected behaviour. 
+Test methods are annotated with `@Test` and should generally start with the name of the method that is being tested, followed by a precondition and/or expected behaviour.
 
 * Template: `@Test void methodNamePreconditionExpectedBehaviour()`
 * Example: `@Test void signInWithEmptyEmailFails()`
 
-Precondition and/or expected behaviour may not always be required if the test is clear enough without them. 
+Precondition and/or expected behaviour may not always be required if the test is clear enough without them.
 
-Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it's recommendable to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see what tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture). 
+Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it\'s recommendable to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see what tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture).
 
 ### 2.4.2 Espresso tests
 
 Every Espresso test class usually targets an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g. `SignInActivityTest`
 
-When using the Espresso API is a common practise to place chained methods in new lines. 
+When using the Espresso API it is a common practice to place chained methods in new lines.
 
 ```java
 onView(withId(R.id.view))

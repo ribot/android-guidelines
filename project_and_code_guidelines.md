@@ -527,7 +527,7 @@ public Observable<Location> syncLocations() {
 
 ### 2.3.1 Use self closing tags
 
-When an XML element doesn\'t have any contents, you __must__ use self closing tags.
+When an XML element doesn't have any contents, you __must__ use self closing tags.
 
 This is good:
 

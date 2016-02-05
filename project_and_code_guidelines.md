@@ -283,7 +283,7 @@ As a general rule, we use the class name as tag and we define it as a `static fi
 
 ```java
 public class MyClass {
-    private static final String TAG = MyClass.class.getName();
+    private static final String TAG = MyClass.class.getSimpleName();
 
     public myMethod() {
         Log.e(TAG, "My error message");

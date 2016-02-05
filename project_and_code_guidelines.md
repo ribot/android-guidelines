@@ -527,7 +527,7 @@ public Observable<Location> syncLocations() {
 
 ### 2.3.1 Use self closing tags
 
-When an XML element doesn\'t have any contents, you __must__ use self closing tags.
+When an XML element doesn't have any contents, you __must__ use self closing tags.
 
 This is good:
 
@@ -587,7 +587,7 @@ Menu example:
 
 #### 2.3.2.2 Strings
 
-String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn\'t belong__ to any section, then you should follow the rules below:
+String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section, then you should follow the rules below:
 
 
 | Prefix             | Description                           |
@@ -626,7 +626,7 @@ Test methods are annotated with `@Test` and should generally start with the name
 
 Precondition and/or expected behaviour may not always be required if the test is clear enough without them.
 
-Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it\'s recommendable to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see what tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture).
+Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it's recommendable to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see what tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture).
 
 ### 2.4.2 Espresso tests
 

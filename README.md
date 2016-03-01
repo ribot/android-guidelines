@@ -1,6 +1,5 @@
-# Android Guidelines and Tools
+# Android Guidelines
 
-List of code / project guidelines and libraries that we use at __ribot__ when developing for the __Android__ platform. 
+Android coding guidelines we use at Danske Bank Mobile Ecosystems:
 
-* [Project and code guidelines](project_and_code_guidelines.md)
-* [Libraries](android_libraries.md)
+* [Project and code style guidelines](project_and_code_guidelines.md)

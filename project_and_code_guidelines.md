@@ -405,7 +405,44 @@ public static UserFragment newInstance(User user) {
 
 __Note__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
 
-### 2.2.15 Line length limit
+### 2.2.13 Android View subclass naming
+
+It is very common to instantiated views in Fragments `onViewCreate()` method and declare them as class variables. But the naming of these variable could be tricky in some cases. 
+
+For example:
+```java
+    
+    // The view nameText and a String can be confused with each other.
+    private String name;
+    private TextView nameText;
+
+```
+To avoid this confusion and to group different views by their type a simple rule should be applied: View variable name should be prefixed with its type shortening. For example:
+```java
+    // tv stands for TextView
+    private TextView tvName, tvEmail;
+    // iv stands for ImageView
+    private ImageView ivLogo;
+    // b stands for Button
+    private Button bSubmit;
+```
+
+### 2.2.14 Android View declaration
+
+Views should be declared in single line declaration.
+
+__Bad:__
+```java
+    private TextView tvName;
+    private TextView tvEmail;
+```
+__Good:__
+```java
+    private TextView tvName, tvEmail;
+```
+
+
+### 2.2.14 Line length limit
 
 Code lines should not exceed __100 characters__. If the line is longer than this limit there are usually two options to reduce its length:
 
@@ -417,7 +454,7 @@ There are two __exceptions__ where it is possible to have lines longer than 100:
 * Lines that are not possible to split, e.g. long URLs in comments.
 * `package` and `import` statements.
 
-#### 2.2.15.1 Line-wrapping strategies
+#### 2.2.14.1 Line-wrapping strategies
 
 There isn't an exact formula that explains how to line-wrap and quite often different solutions are valid. However there are a few rules that can be applied to common cases.
 
@@ -469,7 +506,7 @@ loadPicture(context,
         "Title of the picture");
 ```
 
-### 2.2.16 RxJava chains styling
+### 2.2.15 RxJava chains styling
 
 Rx chains of operators require line-wrapping. Every operator must go in a new line and the line should be broken before the `.`
 

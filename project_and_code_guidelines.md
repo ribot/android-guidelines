@@ -249,66 +249,48 @@ _The scope of local variables should be kept to a minimum (Effective Java Item 2
 
 _Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#limit-variable-scope))
 
-
-To exactly match the IDE settings, the imports should be:
-
-* Alphabetically ordered within each grouping, with capital letters before lower case letters (e.g. Z before a).
-* There should be a blank line between each major grouping (android, com, junit, net, org, java, javax).
-
-More info [here](https://source.android.com/source/code-style.html#limit-variable-scope)
-
-### 2.2.9 Logging guidelines
-
-Use the logging methods provided by the `Log` class to print out error messages or other information that may be useful for developers to identify issues:
-
-* `Log.v(String tag, String msg)` (verbose)
-* `Log.d(String tag, String msg)` (debug)
-* `Log.i(String tag, String msg)` (information)
-* `Log.w(String tag, String msg)` (warning)
-* `Log.e(String tag, String msg)` (error)
-
-As a general rule, we use the class name as tag and we define it as a `static final` field at the top of the file. For example:
-
-```java
-public class MyClass {
-    private static final String TAG = MyClass.class.getSimpleName();
-
-    public myMethod() {
-        Log.e(TAG, "My error message");
-    }
-}
-```
+### 2.2.8 Logging guidelines
 
 VERBOSE and DEBUG logs __must__ be disabled on release builds. It is also recommended to disable INFORMATION, WARNING and ERROR logs but you may want to keep them enabled if you think they may be useful to identify issues on release builds. If you decide to leave them enabled, you have to make sure that they are not leaking private information such as email addresses, user ids, etc.
 
-To only show logs on debug builds:
-
-```java
-if (BuildConfig.DEBUG) Log.d(TAG, "The value of x is " + x);
-```
-
-### 2.2.10 Class member ordering
+### 2.2.9 Class member ordering
 
 There is no single correct solution for this but using a __logical__ and __consistent__ order will improve code learnability and readability. It is recommendable to use the following order:
 
-1. Constants
-2. Fields
-3. Constructors
-4. Override methods and callbacks (public or private)
-5. Public methods
-6. Private methods
-7. Inner classes or interfaces
+1. Inner interfaces
+2. Constants
+3. Static fields
+4. Static methods
+5. Fields
+6. Constructors
+7. Overridden methods and callbacks
+8. Public methods
+9. Private methods
+10. Inner classes
 
 Example:
-
 ```java
-public class MainActivity extends Activity {
+public class MainFragment extends Fragment {
 
-	private String mTitle;
-    private TextView mTextViewTitle;
+    public interface Callback {
+        void onPhotoSent();
+    }
+
+    public static final String TAG = "MainFragment";
+    private static final int DEFAULT_TIMEOUT = 20;
+
+    public static String publicStaticString;
+    private static String privateStaticString;
+
+    public static Fragment newInstance() {
+        return new MainFragment();
+    }
+
+    private String title;
+    private TextView textView;
 
     public void setTitle(String title) {
-    	mTitle = title;
+        this.title = title;
     }
 
     @Override
@@ -321,7 +303,7 @@ public class MainActivity extends Activity {
     }
 
     static class AnInnerClass {
-
+        ...
     }
 
 }

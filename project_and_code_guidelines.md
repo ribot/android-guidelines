@@ -249,16 +249,6 @@ _The scope of local variables should be kept to a minimum (Effective Java Item 2
 
 _Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#limit-variable-scope))
 
-### 2.2.8 Order import statements
-
-If you are using an IDE such as Android Studio, you don't have to worry about this because your IDE is already obeying these rules. If not, have a look below.
-
-The ordering of import statements is:
-
-1. Android imports
-2. Imports from third parties (com, junit, net, org)
-3. java and javax
-4. Same project imports
 
 To exactly match the IDE settings, the imports should be:
 

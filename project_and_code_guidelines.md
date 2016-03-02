@@ -114,12 +114,12 @@ try {
 }
 ```
 
-See the reason why and some alternatives [here](https://source.android.com/source/code-style.html#dont-catch-generic-exception)
+See the reason why and some alternatives [here](https://source.android.com/source/code-style.html#dont-catch-generic-exception).
+If you still decice to do this, write a comment why this is a good idea. 
 
 ### 2.1.3 Don't use finalizers
 
-_We don't use finalizers. There are no guarantees as to when a finalizer will be called, or even that it will be called at all. In most cases, you can do what you need from a finalizer with good exception handling. If you absolutely need it, define a `close()` method (or the like) and document exactly when that method needs to be called. See `InputStream` for an example. In this case it is appropriate but not required to print a short log message from the finalizer, as long as it is not expected to flood the logs._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#dont-use-finalizers))
-
+_We don't use finalizers. Read more: [Android code style guidelines](https://source.android.com/source/code-style.html#dont-use-finalizers)_
 
 ### 2.1.4 Fully qualify imports
 
@@ -128,6 +128,41 @@ This is bad: `import foo.*;`
 This is good: `import foo.Bar;`
 
 See more info [here](https://source.android.com/source/code-style.html#fully-qualify-imports)
+
+### 2.1.5 Avoid Serialization and Deserialization
+
+_Serialization and deserialization of objects is a CPU-intensive procedure and is likely to slow down your application. While performance loss won't be visible on small objects beware of serialization and deserialization of large lists of objects.
+Preferable approach is to use [Parceblable](http://developer.android.com/intl/es/reference/android/os/Parcelable.html)._
+
+### 2.1.6 Avoid Synchronized
+
+Synchronization has hight performance cost in java and improper synchronization can also cause a deadlock.
+So use synchronization if you trully dealing with multithreaded processes and doing so follow the guidelines.
+You can read more detailed guidelines here: [Java Language Best Practices](http://docs.oracle.com/cd/A97688_16/generic.903/bp/java.htm#1006832)
+
+#### 2.1.6.1 Synchronize Critical Sections Only
+
+If only certain operations in the method must be synchronized, use a synchronized block with a lock instead of synchronizing the entire method. For example:
+```
+private final Object lock = new Object();
+    ...
+    private void doSomething()
+    {
+     // perform tasks that do not require synchronicity
+        ...
+        synchronized (lock)
+            {
+            ...
+            }
+        ...
+    }
+```
+
+#### 2.1.6.2 Know Which Java Objects Already Have Synchronization Built-in
+Some Java objects (such as Hashtable, Vector, and StringBuffer) already have synchronization built into many of their APIs. They may not require additional synchronization.
+
+#### 2.1.6.3 Do Not Under-Synchronize
+Some Java variables and operations are not atomic. If these variables or operations can be used by multiple threads, you must use synchronization to prevent data corruption. For example: (i) Java types long and double are comprised of eight bytes; any access to these fields must be synchronized. (ii) Operations such as ++ and -- must be synchronized because they represent a read and a write, not an atomic operation.
 
 ## 2.2 Java style rules
 

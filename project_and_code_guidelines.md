@@ -356,7 +356,7 @@ When using one of these components, you __must__ define the keys as a `static fi
 | -----------------  | ----------------- |
 | SharedPreferences  | `PREF_`             |
 | Bundle             | `BUNDLE_`           |
-| Fragment Arguments | `ARGUMENT_`         |
+| Fragment Arguments | `ARG_`         |
 | Intent Extra       | `EXTRA_`            |
 | Intent Action      | `ACTION_`           |
 
@@ -368,7 +368,7 @@ Example:
 // Note the value of the field is the same as the name to avoid duplication issues
 static final String PREF_EMAIL = "PREF_EMAIL";
 static final String BUNDLE_AGE = "BUNDLE_AGE";
-static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
+static final String ARG_USER_ID = "ARG_USER_ID";
 
 // Intent-related items use full package name as value
 static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
@@ -395,17 +395,15 @@ For Fragments it is named `newInstance()` and handles the creation of the Fragme
 
 ```java
 public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment;
-	Bundle args = new Bundle();
-	args.putParcelable(ARGUMENT_USER, user);
-	fragment.setArguments(args)
-	return fragment;
+    UserFragment fragment = new UserFragment;
+    Bundle args = new Bundle();
+    args.putParcelable(ARG_USER, user);
+    fragment.setArguments(args)
+    return fragment;
 }
 ```
 
-__Note 1__: These methods should go at the top of the class before `onCreate()`.
-
-__Note 2__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
+__Note__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
 
 ### 2.2.15 Line length limit
 

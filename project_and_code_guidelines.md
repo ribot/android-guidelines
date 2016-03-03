@@ -533,9 +533,9 @@ This is good:
 
 ```xml
 <TextView
-	android:id="@+id/text_view_profile"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content" />
+    android:id="@+id/tv_view_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
 ```
 
 This is __bad__ :
@@ -543,7 +543,7 @@ This is __bad__ :
 ```xml
 <!-- Don\'t do this! -->
 <TextView
-    android:id="@+id/text_view_profile"
+    android:id="@+id/tv_view_profile"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 </TextView>
@@ -556,26 +556,25 @@ Resource IDs and names are written in __lowercase_underscore__.
 
 #### 2.3.2.1 ID naming
 
-IDs should be prefixed with the name of the element in lowercase underscore. For example:
+IDs should be prefixed with a shortening of element type in lowercase underscore. For example:
 
 
 | Element            | Prefix            |
 | -----------------  | ----------------- |
-| `TextView`           | `text_`             |
-| `ImageView`          | `image_`            |
-| `Button`             | `button_`           |
-| `Menu`               | `menu_`             |
+| `TextView`         | `tv_`             |
+| `ImageView`        | `iv_`             |
+| `Button`           | `b_`              |
 
 Image view example:
 
 ```xml
 <ImageView
-    android:id="@+id/image_profile"
+    android:id="@+id/iv_profile"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 ```
 
-Menu example:
+Menu items id should be prefixed with `menu_`. For example:
 
 ```xml
 <menu>
@@ -585,23 +584,14 @@ Menu example:
 </menu>
 ```
 
-#### 2.3.2.2 Strings
+#### 2.3.2.2 Styles and Themes
 
-String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section, then you should follow the rules below:
-
-
-| Prefix             | Description                           |
-| -----------------  | --------------------------------------|
-| `error_`             | An error message                      |
-| `msg_`               | A regular information message         |
-| `title_`             | A title, i.e. a dialog title          |
-| `action_`            | An action such as "Save" or "Create"  |
-
-
-
-#### 2.3.2.3 Styles and Themes
-
-Unless the rest of resources, style names are written in __UpperCamelCase__.
+Style names are written in __UpperCamelCase__ and should be prefixed with project name or project name shortening. Also styles names should be divided by `.` into logical peaces, for example:
+```xml 
+<style name="MPay.Theme.Light"/>
+<style name="MPay.Text.Header1"/>
+<style name="MPay.Button.Flat"/>
+```
 
 ### 2.3.3 Attributes ordering
 

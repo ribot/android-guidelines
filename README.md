@@ -1,5 +1,12 @@
-# Android Guidelines
+# Android guidelines
 
-Android coding guidelines we use at Danske Bank Mobile Ecosystems:
+Read following guidelines that we use at Danske Bank Mobile Ecosystems:
 
 * [Project and code style guidelines](project_and_code_guidelines.md)
+
+
+## Configure Android Studio:
+
+1. Download [mob-eco-code-style.xml](mob-eco-code-style.xml) file, save it to (OS X) ~/Users/ainius/Library/Preferences/AndroidStudio1.5/codestyles
+2. Launch Android Studio, go to Preferences -> Code Style -> Java
+3. Set scheme: mob-eco-code-style

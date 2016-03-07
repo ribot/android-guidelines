@@ -171,21 +171,19 @@ Some Java variables and operations are not atomic. If these variables or operati
 
 Fields should be defined at the __top of the file__ and they should follow the naming rules listed below.
 
-* Private, non-static field names start with __m__.
-* Private, static field names start with __s__.
-* Other fields start with a lower case letter.
 * Static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
+* Other fields start with a lower case letter.
 
 Example:
 
 ```java
 public class MyClass {
     public static final int SOME_CONSTANT = 42;
+    private static MyClass myClass;
     public int publicField;
-    private static MyClass sSingleton;
-    int mPackagePrivate;
-    private int mPrivate;
-    protected int mProtected;
+    int packagePrivateField;
+    private int privateField;
+    protected int protectedField;
 }
 ```
 
@@ -287,76 +285,48 @@ _The scope of local variables should be kept to a minimum (Effective Java Item 2
 
 _Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#limit-variable-scope))
 
-### 2.2.8 Order import statements
-
-If you are using an IDE such as Android Studio, you don't have to worry about this because your IDE is already obeying these rules. If not, have a look below.
-
-The ordering of import statements is:
-
-1. Android imports
-2. Imports from third parties (com, junit, net, org)
-3. java and javax
-4. Same project imports
-
-To exactly match the IDE settings, the imports should be:
-
-* Alphabetically ordered within each grouping, with capital letters before lower case letters (e.g. Z before a).
-* There should be a blank line between each major grouping (android, com, junit, net, org, java, javax).
-
-More info [here](https://source.android.com/source/code-style.html#limit-variable-scope)
-
-### 2.2.9 Logging guidelines
-
-Use the logging methods provided by the `Log` class to print out error messages or other information that may be useful for developers to identify issues:
-
-* `Log.v(String tag, String msg)` (verbose)
-* `Log.d(String tag, String msg)` (debug)
-* `Log.i(String tag, String msg)` (information)
-* `Log.w(String tag, String msg)` (warning)
-* `Log.e(String tag, String msg)` (error)
-
-As a general rule, we use the class name as tag and we define it as a `static final` field at the top of the file. For example:
-
-```java
-public class MyClass {
-    private static final String TAG = MyClass.class.getSimpleName();
-
-    public myMethod() {
-        Log.e(TAG, "My error message");
-    }
-}
-```
+### 2.2.8 Logging guidelines
 
 VERBOSE and DEBUG logs __must__ be disabled on release builds. It is also recommended to disable INFORMATION, WARNING and ERROR logs but you may want to keep them enabled if you think they may be useful to identify issues on release builds. If you decide to leave them enabled, you have to make sure that they are not leaking private information such as email addresses, user ids, etc.
 
-To only show logs on debug builds:
-
-```java
-if (BuildConfig.DEBUG) Log.d(TAG, "The value of x is " + x);
-```
-
-### 2.2.10 Class member ordering
+### 2.2.9 Class member ordering
 
 There is no single correct solution for this but using a __logical__ and __consistent__ order will improve code learnability and readability. It is recommendable to use the following order:
 
-1. Constants
-2. Fields
-3. Constructors
-4. Override methods and callbacks (public or private)
-5. Public methods
-6. Private methods
-7. Inner classes or interfaces
+1. Inner interfaces
+2. Constants
+3. Static fields
+4. Static methods
+5. Fields
+6. Constructors
+7. Overridden methods and callbacks
+8. Public methods
+9. Private methods
+10. Inner classes
 
 Example:
-
 ```java
-public class MainActivity extends Activity {
+public class MainFragment extends Fragment {
 
-	private String mTitle;
-    private TextView mTextViewTitle;
+    public interface Callback {
+        void onPhotoSent();
+    }
+
+    public static final String TAG = "MainFragment";
+    private static final int DEFAULT_TIMEOUT = 20;
+
+    public static String publicStaticString;
+    private static String privateStaticString;
+
+    public static Fragment newInstance() {
+        return new MainFragment();
+    }
+
+    private String title;
+    private TextView textView;
 
     public void setTitle(String title) {
-    	mTitle = title;
+        this.title = title;
     }
 
     @Override
@@ -369,7 +339,7 @@ public class MainActivity extends Activity {
     }
 
     static class AnInnerClass {
-
+        ...
     }
 
 }
@@ -422,7 +392,7 @@ When using one of these components, you __must__ define the keys as a `static fi
 | -----------------  | ----------------- |
 | SharedPreferences  | `PREF_`             |
 | Bundle             | `BUNDLE_`           |
-| Fragment Arguments | `ARGUMENT_`         |
+| Fragment Arguments | `ARG_`         |
 | Intent Extra       | `EXTRA_`            |
 | Intent Action      | `ACTION_`           |
 
@@ -434,7 +404,7 @@ Example:
 // Note the value of the field is the same as the name to avoid duplication issues
 static final String PREF_EMAIL = "PREF_EMAIL";
 static final String BUNDLE_AGE = "BUNDLE_AGE";
-static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
+static final String ARG_USER_ID = "ARG_USER_ID";
 
 // Intent-related items use full package name as value
 static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
@@ -461,19 +431,54 @@ For Fragments it is named `newInstance()` and handles the creation of the Fragme
 
 ```java
 public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment;
-	Bundle args = new Bundle();
-	args.putParcelable(ARGUMENT_USER, user);
-	fragment.setArguments(args)
-	return fragment;
+    UserFragment fragment = new UserFragment;
+    Bundle args = new Bundle();
+    args.putParcelable(ARG_USER, user);
+    fragment.setArguments(args)
+    return fragment;
 }
 ```
 
-__Note 1__: These methods should go at the top of the class before `onCreate()`.
+__Note__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
 
-__Note 2__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
+### 2.2.13 Android View subclass naming
 
-### 2.2.15 Line length limit
+It is very common to instantiated views in Fragments `onViewCreate()` method and declare them as class variables. But the naming of these variable could be tricky in some cases. 
+
+For example:
+```java
+    
+    // The view nameText and a String can be confused with each other.
+    private String name;
+    private TextView nameText;
+
+```
+To avoid this confusion and to group different views by their type a simple rule should be applied: View variable name should be prefixed with its type shortening. For example:
+```java
+    // tv stands for TextView
+    private TextView tvName, tvEmail;
+    // iv stands for ImageView
+    private ImageView ivLogo;
+    // b stands for Button
+    private Button bSubmit;
+```
+
+### 2.2.14 Android View declaration
+
+Views should be declared in single line declaration.
+
+__Bad:__
+```java
+    private TextView tvName;
+    private TextView tvEmail;
+```
+__Good:__
+```java
+    private TextView tvName, tvEmail;
+```
+
+
+### 2.2.14 Line length limit
 
 Code lines should not exceed __100 characters__. If the line is longer than this limit there are usually two options to reduce its length:
 
@@ -485,7 +490,7 @@ There are two __exceptions__ where it is possible to have lines longer than 100:
 * Lines that are not possible to split, e.g. long URLs in comments.
 * `package` and `import` statements.
 
-#### 2.2.15.1 Line-wrapping strategies
+#### 2.2.14.1 Line-wrapping strategies
 
 There isn't an exact formula that explains how to line-wrap and quite often different solutions are valid. However there are a few rules that can be applied to common cases.
 
@@ -537,7 +542,7 @@ loadPicture(context,
         "Title of the picture");
 ```
 
-### 2.2.16 RxJava chains styling
+### 2.2.15 RxJava chains styling
 
 Rx chains of operators require line-wrapping. Every operator must go in a new line and the line should be broken before the `.`
 

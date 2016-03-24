@@ -71,8 +71,7 @@ Note that there are cases where these rules will not be possible to apply. For e
 
 #### 1.2.2.3 Menu files
 
-Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be used in the `UserActivity`, then the name of the file should be `activity_user.xml`
-
+Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be used in the `UserActivity`, then the name of the file should be `activity_user.xml`.for context menu use **context** word at last of name like `activity_user_context.xml`. if you have more context menu in one activity you should mention the part that the context menu is using in it `activity_user_context_list_listmode.xml` and `activity_user_context_list_gridmode.xml` for example.
 A good practice is to not include the word `menu` as part of the name because these files are already located in the `menu` directory.
 
 #### 1.2.2.4 Values files

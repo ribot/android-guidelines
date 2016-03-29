@@ -644,6 +644,39 @@ As a general rule you should try to group similar attributes together. A good wa
 4. Other layout attributes, sorted alphabetically
 5. Remaining attributes, sorted alphabetically
 
+### 2.3.4 Use designtime layout attributes
+
+These are attributes which are used when the layout is rendered in the tool, but have no impact on the runtime.
+Use these attributes to display sample data when editing the layout. This makes layouts preview much more informative.
+
+To achieve this use __tools__ namespace:
+
+```xml
+//Make views visible even if they're not visible initially.
+<LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        //Set sample text if non english string resource is used.
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_user_name"
+            tools:text="Username"/>
+
+        //Set sample text if text field is empty initially.
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="John Dao"/>
+
+    </LinearLayout>
+```
+
 ## 2.4 Tests style rules
 
 ### 2.4.1 Unit tests

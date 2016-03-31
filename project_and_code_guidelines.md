@@ -448,6 +448,7 @@ It is very common to instantiated views in Fragments `onViewCreate()` method and
 For example:
 ```java
     
+    // BAD EXAMPLE!
     // The view nameText and a String can be confused with each other.
     private String name;
     private TextView nameText;

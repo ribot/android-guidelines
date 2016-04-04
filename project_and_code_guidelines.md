@@ -647,7 +647,7 @@ As a general rule you should try to group similar attributes together. A good wa
 ### 2.3.4 Use designtime layout attributes
 
 These are attributes which are used when the layout is rendered in the tool, but have no impact on the runtime.
-Use these attributes to display sample data when editing the layout. This makes layouts preview much more informative.
+Use these attributes to display sample data when editing the layout. This makes layout previews much more informative.
 
 To achieve this use __tools__ namespace:
 
@@ -675,6 +675,62 @@ To achieve this use __tools__ namespace:
             tools:text="John Dao"/>
 
     </LinearLayout>
+```
+
+### 2.3.5 Use of dimension resources
+
+All components align to an 8dp square baseline grid. Iconography in toolbars align to a 4dp square baseline grid. Dimensions that can be reused must be stored in dimension resources, to keep projects visual design language consitent.
+
+#### 2.3.5.1 Use common dimension resources
+
+Use common dimension resources for view paddings and margins to make layouts consistent and better adapt to different screen configurations.
+
+| Margins | Paddings |
+| --- | --- |
+| `margin_xs` | `padding_xs` |
+| `margin_s` | `padding_s` |
+| `margin_m` | `padding_m` |
+| `margin_l` | `padding_l` |
+| `margin_xl` | `padding_xl` |
+
+#### 2.3.5.2 Use screen margin dimension resources
+
+Use sceen margin dimensions for content container that matches screen size. This will provide more appropriate and distinct layout for large screen configurations with minimal effort when separate layout file is not required.
+
+| Dimension | phone | 7" | 10" |
+| --- | --- | --- | --- |
+| `screen_margin_horizontal` | `0dp` | `64dp` | `80dp` |
+| `screen_margin_vertical` | `0dp` | `40dp` | `64dp`|
+
+If container view is __scrollable__, `screen_margin_vertical` dimension value should be used as vertical padding instead of margin in conjunction with `clipToPadding` attribute value set to __false__, for example:
+
+```xml
+...
+<RecyclerView
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/screen_margin_horizontal"
+    android:layout_marginRight="@dimen/screen_margin_horizontal"
+    android:clipToPadding="false"
+    android:paddingTop="@dimen/screen_margin_vertical"
+    android:paddingBottom="@dimen/screen_margin_vertical" />
+...
+```
+
+Screen margin dimensions can also be __used as padding__ to achieve same visual result when content container is top level container, for example:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:paddingLeft="@dimen/screen_margin_horizontal"
+             android:paddingRight="@dimen/screen_margin_horizontal"
+             android:paddingTop="@dimen/screen_margin_vertical"
+             android:paddingBottom="@dimen/screen_margin_vertical">
+             ...
 ```
 
 ## 2.4 Tests style rules

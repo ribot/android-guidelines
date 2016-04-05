@@ -395,8 +395,10 @@ When using one of these components, you __must__ define the keys as a `static fi
 | Fragment Arguments | `ARG_`         |
 | Intent Extra       | `EXTRA_`            |
 | Intent Action      | `ACTION_`           |
+| Activity result extras | `RESULT_`           |
 
 Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a Bundle. However, because this is a quite common use of Bundles, we define a different prefix for them.
+Also bundle can be passed with Intent arg passed in `Activity.setResult()`. In this case we use bundle keys with  `RESULT_` prefix to better specify usage of key.
 
 Example:
 
@@ -406,8 +408,10 @@ static final String PREF_EMAIL = "PREF_EMAIL";
 static final String BUNDLE_AGE = "BUNDLE_AGE";
 static final String ARG_USER_ID = "ARG_USER_ID";
 
-// Intent-related items use full package name as value
-static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
+static final String EXTRA_SURNAME = "EXTRA_SURNAME";
+static final String RESULT_SURNAME = "RESULT_SURNAME";
+
+// Intent action keys use full package name as value
 static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 ```
 

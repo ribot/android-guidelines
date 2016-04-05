@@ -462,6 +462,8 @@ To avoid this confusion and to group different views by their type a simple rule
     private ImageView ivLogo;
     // b stands for Button
     private Button bSubmit;
+    // w stands for Wrapper
+    private LinearLayout wUserData
 ```
 
 ### 2.2.14 Android View declaration
@@ -606,12 +608,22 @@ IDs should be prefixed with a shortening of element type in lowercase underscore
 | `TextView`         | `tv_`             |
 | `ImageView`        | `iv_`             |
 | `Button`           | `b_`              |
+| `ViewGroup`	     | `w_`
 
 Image view example:
 
 ```xml
 <ImageView
     android:id="@+id/iv_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+```
+
+Use `w_` for wrappers, a.k.a. ViewGroups. For example:
+
+```xml
+<LinearLayout
+    android:id="@+id/w_user_data"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 ```

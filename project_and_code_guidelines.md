@@ -398,7 +398,7 @@ When using one of these components, you __must__ define the keys as a `static fi
 | Activity result extras | `RESULT_`           |
 
 Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a Bundle. However, because this is a quite common use of Bundles, we define a different prefix for them.
-Also bundle can be passed with Intent arg passed in `Activity.setResult()`. In this case we use bundle keys with  `RESULT_` prefix to better specify usage of key.
+Also use `RESULT_` prefix for Activity result intents.
 
 Example:
 

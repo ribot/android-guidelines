@@ -421,7 +421,7 @@ When data is passed into an `Activity `or `Fragment` via an `Intent` or a `Bundl
 
 When an `Activity` or `Fragment` expects arguments, it should provide a `public static` method that facilitates the creation of the relevant `Intent` or `Fragment`.
 
-In the case of Activities the method is usually called `getStartIntent()`:
+In the case of __Activities__ the method is usually called `getStartIntent()`:
 
 ```java
 public static Intent getStartIntent(Context context, User user) {
@@ -431,7 +431,15 @@ public static Intent getStartIntent(Context context, User user) {
 }
 ```
 
-For Fragments it is named `newInstance()` and handles the creation of the Fragment with the right arguments:
+For retrieving extras use getter with 'Extra' prefix:
+
+```java
+private User getExtraUser() {
+    return getIntent().getParcelableExtra(EXTRA_USER);
+}
+```
+
+For __Fragments__ it is named `newInstance()` and handles the creation of the Fragment with the right arguments:
 
 ```java
 public static UserFragment newInstance(User user) {
@@ -444,6 +452,17 @@ public static UserFragment newInstance(User user) {
 ```
 
 __Note__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
+
+For retrieving fragment arguments use getter method with 'Arg' prefix:
+
+```java
+private User getArgUser() {
+    // No need for getArguments() == null check as long as
+    // there is no newInstance method with zero args.
+    return getArguments().getParcelable(ARG_USER);
+}
+```
+
 
 ### 2.2.13 Android View subclass naming
 

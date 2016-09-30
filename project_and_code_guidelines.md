@@ -138,7 +138,7 @@ Preferable approach is to use [Parceblable](http://developer.android.com/intl/es
 ### 2.1.6 Avoid Synchronized
 
 Synchronization has hight performance cost in java and improper synchronization can also cause a deadlock.
-So use synchronization if you trully dealing with multithreaded processes and doing so follow the guidelines.
+So use synchronization if you are truly dealing with multithreaded processes and doing so follow the guidelines.
 You can read more detailed guidelines here: [Java Language Best Practices](http://docs.oracle.com/cd/A97688_16/generic.903/bp/java.htm#1006832)
 
 #### 2.1.6.1 Synchronize Critical Sections Only
@@ -466,7 +466,7 @@ private User getArgUser() {
 
 ### 2.2.13 Android View subclass naming
 
-It is very common to instantiated views in Fragments `onViewCreate()` method and declare them as class variables. But the naming of these variable could be tricky in some cases. 
+It is very common to instantiate views in Fragment's `onCreateView()` method and declare them as class variables. But the naming of these variable could be tricky in some cases. 
 
 For example:
 ```java
@@ -663,7 +663,7 @@ Menu items id should be prefixed with `menu_`. For example:
 
 #### 2.3.2.2 Styles and Themes
 
-Style names are written in __UpperCamelCase__ and should be prefixed with project name or project name shortening. Also styles names should be divided by `.` into logical peaces, for example:
+Style names are written in __UpperCamelCase__ and should be prefixed with project name or project name shortening. Also style names should be divided by `.` into logical peaces, for example:
 ```xml 
 <style name="MPay.Theme.Light"/>
 <style name="MPay.Text.Header1"/>
@@ -731,7 +731,7 @@ Use common dimension resources for view paddings and margins to make layouts con
 
 #### 2.3.5.2 Use screen margin dimension resources
 
-Use sceen margin dimensions for content container that matches screen size. This will provide more appropriate and distinct layout for large screen configurations with minimal effort when separate layout file is not required.
+Use screen margin dimensions for content container that matches screen size. This will provide more appropriate and distinct layout for large screen configurations with minimal effort when separate layout file is not required.
 
 | Dimension | phone | 7" | 10" |
 | --- | --- | --- | --- |

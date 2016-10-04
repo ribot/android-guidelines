@@ -128,7 +128,7 @@ This is bad: `import foo.*;`
 
 This is good: `import foo.Bar;`
 
-See more info [here](https://source.android.com/source/code-style.html#fully-qualify-imports)
+See more info [here](https://source.android.com/source/code-style.html#fully-qualify-imports).
 
 ### 2.1.5 Avoid Serialization and Deserialization
 
@@ -677,15 +677,14 @@ Color names are written in __lowercase_underscore__. Color code should be __UPPE
 <color name="primary_dark">#182532</color>
 ```
 
-Use prefixes to designate colors for text `text_`, toolbar `toolbar_`, status bar `status_`, tabs `tab_`. Use buttons prefix `btn_` for clickable items and selectors.
+Use prefixes to designate color groups for text `text_`, toolbar `toolbar_`, status bar `status_`, tabs `tab_`. Use buttons prefix `btn_` for clickable items and selectors. Before adding new color, check if it doesn't already exist in this color group. Do NOT use colors from a different color group.
 
 For colors with a specified alpha value, append opacity percentage at the end of a color name. E.g.
 ```xml
 <color name="btn_red_67">#AAFD3C30</color>.
 ```
 
-Determine percentage from hex value [here](http://online.sfsu.edu/chrism/hexval.html)
-
+Determine percentage from hex value [here](http://online.sfsu.edu/chrism/hexval.html).
 
 ### 2.3.3 Attributes ordering
 

@@ -133,7 +133,7 @@ See more info [here](https://source.android.com/source/code-style.html#fully-qua
 ### 2.1.5 Avoid Serialization and Deserialization
 
 _Serialization and deserialization of objects is a CPU-intensive procedure and is likely to slow down your application. While performance loss won't be visible on small objects beware of serialization and deserialization of large lists of objects.
-Preferable approach is to use [Parceblable](http://developer.android.com/intl/es/reference/android/os/Parcelable.html)._
+Preferable approach is to use [Parcelable](https://developer.android.com/reference/android/os/Parcelable.html)._
 
 ### 2.1.6 Avoid Synchronized
 
@@ -187,7 +187,7 @@ public class MyClass {
 }
 ```
 
-### 2.2.3 Treat acronyms as words
+### 2.2.2 Treat acronyms as words
 
 | Good           | Bad            |
 | -------------- | -------------- |
@@ -196,7 +196,7 @@ public class MyClass {
 | `String url`     | `String URL`     |
 | `long id`        | `long ID`        |
 
-### 2.2.4 Use spaces for indentation
+### 2.2.3 Use spaces for indentation
 
 Use __4 space__ indents for blocks:
 
@@ -213,7 +213,7 @@ Instrument i =
         someLongExpression(that, wouldNotFit, on, one, line);
 ```
 
-### 2.2.5 Use standard brace style
+### 2.2.4 Use standard brace style
 
 Braces go on the same line as the code before them.
 
@@ -246,19 +246,19 @@ if (condition)
     body();  // bad!
 ```
 
-### 2.2.6 Annotations
+### 2.2.5 Annotations
 
-#### 2.2.6.1 Annotations practices
+#### 2.2.5.1 Annotations practices
 
 According to the Android code style guide, the standard practices for some of the predefined annotations in Java are:
 
-* `@Override`: The @Override annotation __must be used__ whenever a method overrides the declaration or implementation from a super-class. For example, if you use the @inheritdocs Javadoc tag, and derive from a class (not an interface), you must also annotate that the method @Overrides the parent class's method.
+* `@Override`: The @Override annotation __must be used__ whenever a method overrides the declaration or implementation from a super-class. For example, if you use the `@inheritDoc` Javadoc tag, and derive from a class (not an interface), you must also annotate that the method `@Override`s the parent class's method.
 
-* `@SuppressWarnings`: The @SuppressWarnings annotation should only be used under circumstances where it is impossible to eliminate a warning. If a warning passes this "impossible to eliminate" test, the @SuppressWarnings annotation must be used, so as to ensure that all warnings reflect actual problems in the code.
+* `@SuppressWarnings`: The `@SuppressWarnings` annotation should only be used under circumstances where it is impossible to eliminate a warning. If a warning passes this "impossible to eliminate" test, the `@SuppressWarnings` annotation must be used, so as to ensure that all warnings reflect actual problems in the code.
 
 More information about annotation guidelines can be found [here](http://source.android.com/source/code-style.html#use-standard-java-annotations).
 
-#### 2.2.6.2 Annotations style
+#### 2.2.5.2 Annotations style
 
 __Classes, Methods and Constructors__
 
@@ -279,17 +279,17 @@ Annotations applying to fields should be listed __on the same line__, unless the
 @Nullable @Mock DataManager mDataManager;
 ```
 
-### 2.2.7 Limit variable scope
+### 2.2.6 Limit variable scope
 
 _The scope of local variables should be kept to a minimum (Effective Java Item 29). By doing so, you increase the readability and maintainability of your code and reduce the likelihood of error. Each variable should be declared in the innermost block that encloses all uses of the variable._
 
 _Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#limit-variable-scope))
 
-### 2.2.8 Logging guidelines
+### 2.2.7 Logging guidelines
 
 VERBOSE and DEBUG logs __must__ be disabled on release builds. It is also recommended to disable INFORMATION, WARNING and ERROR logs but you may want to keep them enabled if you think they may be useful to identify issues on release builds. If you decide to leave them enabled, you have to make sure that they are not leaking private information such as email addresses, user ids, etc.
 
-### 2.2.9 Class member ordering
+### 2.2.8 Class member ordering
 
 There is no single correct solution for this but using a __logical__ and __consistent__ order will improve code learnability and readability. It is recommendable to use the following order:
 
@@ -366,7 +366,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-### 2.2.11 Parameter ordering in methods
+### 2.2.9 Parameter ordering in methods
 
 When programming for Android, it is quite common to define methods that take a `Context`. If you are writing a method like this, then the __Context__ must be the __first__ parameter.
 
@@ -382,7 +382,7 @@ public User loadUser(Context context, int userId);
 public void loadUserAsync(Context context, int userId, UserCallback callback);
 ```
 
-### 2.2.13 String constants, naming, and values
+### 2.2.10 String constants, naming, and values
 
 Many elements of the Android SDK such as `SharedPreferences`, `Bundle`, or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
 
@@ -415,7 +415,7 @@ static final String RESULT_SURNAME = "RESULT_SURNAME";
 static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 ```
 
-### 2.2.14 Arguments in Fragments and Activities
+### 2.2.11 Arguments in Fragments and Activities
 
 When data is passed into an `Activity `or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
 
@@ -464,7 +464,7 @@ private User getArgUser() {
 ```
 
 
-### 2.2.13 Android View subclass naming
+### 2.2.12 Android View subclass naming
 
 It is very common to instantiate views in Fragment's `onCreateView()` method and declare them as class variables. But the naming of these variable could be tricky in some cases. 
 
@@ -489,7 +489,7 @@ To avoid this confusion and to group different views by their type a simple rule
     private LinearLayout wUserData
 ```
 
-### 2.2.14 Android View declaration
+### 2.2.13 Android View declaration
 
 Views should be declared in single line declaration.
 
@@ -663,7 +663,7 @@ Menu items id should be prefixed with `menu_`. For example:
 
 #### 2.3.2.2 Styles and Themes
 
-Style names are written in __UpperCamelCase__ and should be prefixed with project name or project name shortening. Also style names should be divided by `.` into logical peaces, for example:
+Style names are written in __UpperCamelCase__ and should be prefixed with project name or project name shortening. Also styles names should be divided by `.` into logical pieces, for example:
 ```xml 
 <style name="MPay.Theme.Light"/>
 <style name="MPay.Text.Header1"/>
@@ -680,7 +680,7 @@ As a general rule you should try to group similar attributes together. A good wa
 4. Other layout attributes, sorted alphabetically
 5. Remaining attributes, sorted alphabetically
 
-### 2.3.4 Use designtime layout attributes
+### 2.3.4 Use design time layout attributes
 
 These are attributes which are used when the layout is rendered in the tool, but have no impact on the runtime.
 Use these attributes to display sample data when editing the layout. This makes layout previews much more informative.
@@ -733,7 +733,7 @@ Use common dimension resources for view paddings and margins to make layouts con
 
 Use screen margin dimensions for content container that matches screen size. This will provide more appropriate and distinct layout for large screen configurations with minimal effort when separate layout file is not required.
 
-| Dimension | phone | 7" | 10" |
+| Dimension | Phone | 7" | 10" |
 | --- | --- | --- | --- |
 | `screen_margin_horizontal` | `0dp` | `64dp` | `80dp` |
 | `screen_margin_vertical` | `0dp` | `40dp` | `64dp`|
@@ -782,11 +782,11 @@ Test methods are annotated with `@Test` and should generally start with the name
 
 Precondition and/or expected behaviour may not always be required if the test is clear enough without them.
 
-Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it's recommendable to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see what tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture).
+Sometimes a class may contain a large amount of methods that at the same time require several tests for each method. In this case, it's recommended to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see which tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture).
 
 ### 2.4.2 Espresso tests
 
-Every Espresso test class usually targets an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g. `SignInActivityTest`
+Every Espresso test class usually targets an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g. `SignInActivityTest`.
 
 When using the Espresso API it is a common practice to place chained methods in new lines.
 

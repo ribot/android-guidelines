@@ -116,7 +116,7 @@ try {
 ```
 
 See the reason why and some alternatives [here](https://source.android.com/source/code-style.html#dont-catch-generic-exception).
-If you still decice to do this, write a comment why this is a good idea. 
+If you still decide to do this, write a comment why this is a good idea.
 
 ### 2.1.3 Don't use finalizers
 
@@ -128,7 +128,7 @@ This is bad: `import foo.*;`
 
 This is good: `import foo.Bar;`
 
-See more info [here](https://source.android.com/source/code-style.html#fully-qualify-imports)
+See more info [here](https://source.android.com/source/code-style.html#fully-qualify-imports).
 
 ### 2.1.5 Avoid Serialization and Deserialization
 
@@ -466,11 +466,11 @@ private User getArgUser() {
 
 ### 2.2.12 Android View subclass naming
 
-It is very common to instantiate views in Fragment's `onCreateView()` method and declare them as class variables. But the naming of these variable could be tricky in some cases. 
+It is very common to instantiate views in Fragment's `onCreateView()` method and declare them as class variables. But the naming of these variable could be tricky in some cases.
 
 For example:
 ```java
-    
+
     // BAD EXAMPLE!
     // The view nameText and a String can be confused with each other.
     private String name;
@@ -663,12 +663,28 @@ Menu items id should be prefixed with `menu_`. For example:
 
 #### 2.3.2.2 Styles and Themes
 
-Style names are written in __UpperCamelCase__ and should be prefixed with project name or project name shortening. Also styles names should be divided by `.` into logical pieces, for example:
-```xml 
+Style names are written in __UpperCamelCase__ and should be prefixed with project name or project name shortening. Also style names should be divided by `.` into logical pieces, for example:
+```xml
 <style name="MPay.Theme.Light"/>
 <style name="MPay.Text.Header1"/>
 <style name="MPay.Button.Flat"/>
 ```
+
+#### 2.3.2.3 Colors
+
+Color names are written in __lowercase_underscore__. Color code should be __UPPERCASE__, for example:
+```xml
+<color name="grey_light">#F0F0F0</color>
+```
+
+Use prefixes to designate color groups for text `text_`, toolbar `toolbar_`, status bar `status_`, tabs `tab_`. Use buttons prefix `btn_` for clickable items and selectors. Before adding new color, check if it doesn't already exist in this color group. Do NOT use colors from a different color group.
+
+For colors with a specified alpha value, append opacity percentage as a two digit number at the end of a color name. E.g.
+```xml
+<color name="btn_red_67">#AAFD3C30</color>.
+```
+
+Determine percentage from hex value [here](http://online.sfsu.edu/chrism/hexval.html).
 
 ### 2.3.3 Attributes ordering
 
@@ -715,7 +731,7 @@ To achieve this use __tools__ namespace:
 
 ### 2.3.5 Use of dimension resources
 
-All components align to an 8dp square baseline grid. Iconography in toolbars align to a 4dp square baseline grid. Dimensions that can be reused must be stored in dimension resources, to keep projects visual design language consitent.
+All components align to an 8dp square baseline grid. Iconography in toolbars align to a 4dp square baseline grid. Dimensions that can be reused must be stored in dimension resources, to keep projects visual design language consistent.
 
 #### 2.3.5.1 Use common dimension resources
 

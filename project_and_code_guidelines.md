@@ -116,7 +116,7 @@ try {
 ```
 
 See the reason why and some alternatives [here](https://source.android.com/source/code-style.html#dont-catch-generic-exception).
-If you still decice to do this, write a comment why this is a good idea.
+If you still decide to do this, write a comment why this is a good idea.
 
 ### 2.1.3 Don't use finalizers
 
@@ -674,12 +674,12 @@ Style names are written in __UpperCamelCase__ and should be prefixed with projec
 
 Color names are written in __lowercase_underscore__. Color code should be __UPPERCASE__, for example:
 ```xml
-<color name="primary_dark">#182532</color>
+<color name="grey_light">#F0F0F0</color>
 ```
 
 Use prefixes to designate color groups for text `text_`, toolbar `toolbar_`, status bar `status_`, tabs `tab_`. Use buttons prefix `btn_` for clickable items and selectors. Before adding new color, check if it doesn't already exist in this color group. Do NOT use colors from a different color group.
 
-For colors with a specified alpha value, append opacity percentage at the end of a color name. E.g.
+For colors with a specified alpha value, append opacity percentage as a two digit number at the end of a color name. E.g.
 ```xml
 <color name="btn_red_67">#AAFD3C30</color>.
 ```

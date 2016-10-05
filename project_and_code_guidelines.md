@@ -731,7 +731,7 @@ To achieve this use __tools__ namespace:
 
 ### 2.3.5 Use of dimension resources
 
-All components align to an 8dp square baseline grid. Iconography in toolbars align to a 4dp square baseline grid. Dimensions that can be reused must be stored in dimension resources, to keep projects visual design language consitent.
+All components align to an 8dp square baseline grid. Iconography in toolbars align to a 4dp square baseline grid. Dimensions that can be reused must be stored in dimension resources, to keep projects visual design language consistent.
 
 #### 2.3.5.1 Use common dimension resources
 

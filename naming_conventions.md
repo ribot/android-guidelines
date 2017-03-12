@@ -72,6 +72,12 @@ static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
 static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 ```
 
+### Methods naming
+
+Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized.
+
+For example: `run();`, `runFast();`, `getBackground();`
+
 ### Resources naming
 
 Resource IDs and names are written in __lowercase_underscore__.

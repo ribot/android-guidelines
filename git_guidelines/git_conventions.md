@@ -2,7 +2,27 @@
 
 ## Naming conventions in Git
 
-[Link to Git naming chapter]
+***[todo: move to Naming Conventions file]***
+
+Feature branches should be named by this pattern:
+
+`issN_abc_issue_name`,
+
+where `issN` -- Issue number (i. e. `iss4`), `abc` -- initials of surname, name and patronymic (i. e. for Ivanov 
+Petr Alekseyevich it will be `ipa`), `issue_name` -- full Issue name.
+
+Commit message header should not contain dot at the end.
+
+Commit message body should contain list with included features and optional details and notes:
+```
+Commit message header
+
+- Change one
+- Change two
+- Change three
+
+Details about the features and notes.
+```
 
 ## Branching
 

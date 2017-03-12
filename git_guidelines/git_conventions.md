@@ -251,3 +251,52 @@ prettybranches = log --graph --abbrev-commit --decorate --simplify-by-decoration
 --format=format:'%C(bold blue)%h%C(reset) - %C(yellow)%aD%C(reset) 
 %C(dim yellow)(%ar)%C(reset)%C(auto)%+d%n %<(80,trunc)'
 ```
+
+## GitHub conventions
+
+### Pull requests
+
+The Pull Request message should contain list with commits headers and hashes:
+
+```
+Pull Request #15
+- Base-file spliting b9863c5
+- Feature one 7f856c5
+- Feature two 8a3b57c
+```
+
+Merge-commit message should contain list of all branch commits:
+
+```
+Merge pull request #15 from User/iss14_abc_feature_branch_name
+- Base-file spliting b9863c5
+- Feature one 7f856c5
+- Feature two 8a3b57c
+- Additional feature 6a6c7b64
+- Feature three 837f7c43
+```
+
+Every Pull Request should be assigned only on **one** Assignee. The Assignee presses Merge Button after approve 
+receiving. After the merging the feature branch can be deleted. Issue should be closed. 
+
+Issue and Pull Request should be moved to **Done** Project column.
+
+### Projects
+
+Participants should use project and cards to show their work status.
+
+Done    | Do    | Will do   | Future concepts
+---     |---    |---        |---
+#13     |#5     |#1         |#5
+#8      |       |#15        |#15
+#3      |       |#3         |
+
+**Done** contains done Issues and Pull Requests. **Do** contains on-progress things. **Will do** contain 
+important Issues for near future work. **Future concepts** contains disputed and discussed things.
+
+Issues and related Pull Request moving in Done only after full completing and merging.
+
+### Links
+
+Issues and comments can contain links to project files and commits if necessary:
+https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown

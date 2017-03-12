@@ -60,36 +60,9 @@ See more info [here](https://source.android.com/source/code-style.html#fully-qua
 
 ## Java style rules
 
-### Fields definition and naming
+### Fields definition
 
-Fields should be defined at the __top of the file__ and they should follow the naming rules listed below.
-
-* Private, non-static field names start with __m__.
-* Private, static field names start with __s__.
-* Other fields start with a lower case letter.
-* Static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
-
-Example:
-
-```java
-public class MyClass {
-    public static final int SOME_CONSTANT = 42;
-    public int publicField;
-    private static MyClass sSingleton;
-    int mPackagePrivate;
-    private int mPrivate;
-    protected int mProtected;
-}
-```
-
-### Treat acronyms as words
-
-| Good           | Bad            |
-| -------------- | -------------- |
-| `XmlHttpRequest` | `XMLHTTPRequest` |
-| `getCustomerId`  | `getCustomerID`  |
-| `String url`     | `String URL`     |
-| `long id`        | `long ID`        |
+Fields should be defined at the __top of the file__.
 
 ### Use spaces for indentation
 
@@ -305,35 +278,6 @@ public User loadUser(Context context, int userId);
 public void loadUserAsync(Context context, int userId, UserCallback callback);
 ```
 
-### String constants, naming, and values
-
-Many elements of the Android SDK such as `SharedPreferences`, `Bundle`, or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
-
-When using one of these components, you __must__ define the keys as a `static final` fields and they should be prefixed as indicated below.
-
-| Element            | Field Name Prefix |
-| -----------------  | ----------------- |
-| SharedPreferences  | `PREF_`             |
-| Bundle             | `BUNDLE_`           |
-| Fragment Arguments | `ARGUMENT_`         |
-| Intent Extra       | `EXTRA_`            |
-| Intent Action      | `ACTION_`           |
-
-Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a Bundle. However, because this is a quite common use of Bundles, we define a different prefix for them.
-
-Example:
-
-```java
-// Note the value of the field is the same as the name to avoid duplication issues
-static final String PREF_EMAIL = "PREF_EMAIL";
-static final String BUNDLE_AGE = "BUNDLE_AGE";
-static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
-
-// Intent-related items use full package name as value
-static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
-static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
-```
-
 ### Arguments in Fragments and Activities
 
 When data is passed into an `Activity `or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
@@ -477,60 +421,6 @@ This is __bad__ :
     android:layout_height="wrap_content" >
 </TextView>
 ```
-
-
-### Resources naming
-
-Resource IDs and names are written in __lowercase_underscore__.
-
-#### ID naming
-
-IDs should be prefixed with the name of the element in lowercase underscore. For example:
-
-
-| Element            | Prefix            |
-| -----------------  | ----------------- |
-| `TextView`           | `text_`             |
-| `ImageView`          | `image_`            |
-| `Button`             | `button_`           |
-| `Menu`               | `menu_`             |
-
-Image view example:
-
-```xml
-<ImageView
-    android:id="@+id/image_profile"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-```
-
-Menu example:
-
-```xml
-<menu>
-	<item
-        android:id="@+id/menu_done"
-        android:title="Done" />
-</menu>
-```
-
-#### Strings
-
-String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section, then you should follow the rules below:
-
-
-| Prefix             | Description                           |
-| -----------------  | --------------------------------------|
-| `error_`             | An error message                      |
-| `msg_`               | A regular information message         |
-| `title_`             | A title, i.e. a dialog title          |
-| `action_`            | An action such as "Save" or "Create"  |
-
-
-
-#### Styles and Themes
-
-Unless the rest of resources, style names are written in __UpperCamelCase__.
 
 ### Attributes ordering
 

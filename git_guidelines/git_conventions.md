@@ -26,7 +26,36 @@ Details about the features and notes.
 
 ## Branching
 
-**Master** and **dev** branches are protected from direct force pushing, editing and deleting. 
+```
+                                    (C1) 
+                                     |
+                                     |
+                                    (C2)
+                                     |
+                                     |
+                                    (C3) master
+                                   /
+                                  /
+                              (C4)
+                             / |
+                            /  |
+                        (C7)  (C5) dev 
+                         |        \
+                         |         \ 
+                        (C8)        (C10)
+                         |           |
+                         |           |
+   iss2_abc_feature_two (C9)        (C11)
+                                     |
+                                     |
+                                    (C12) iss1_cfg_feature_one
+```
+
+The **master** branch contain only products releases.
+
+The **dev** branch contain only feature merges.
+
+The **master** and **dev** branches are protected from direct force pushing, editing and deleting. 
 For the new features merging there are the **Pull Requests** system: 
 https://help.github.com/articles/about-pull-requests/ 
 
@@ -40,7 +69,21 @@ Pull requests should be merged with `--no-ff merge`.
 
 ### Pull request merging
 
-_**[git_diagram_feature_branching]**_
+```
+                              (C4)
+                             / |
+                            /  |
+                        (C6)  (C5) dev 
+                         |        \
+                         |         \ 
+   iss1_cfg_feature_one (C7)        (C6')
+                         |           |
+                         |           |
+   iss1_abc_feature_one (C8)        (C7')
+                                     |
+                                     |
+                                    (C9) origin/iss1_cfg_feature_one
+```
 
 Pull request checklist:
 
@@ -51,27 +94,144 @@ The First requirement for a branch merging via a Pull Request is a lack of merin
 resolve all conflicts.
 
 The Second -- is a approve from the Code Reviewer. Code review is needed for the high quality of any new code additions. 
+ 
+```
+                               (C4) dev
+                              / 
+                             /  
+                         (C5)  
+                          |     
+                          |     
+                         (C6)   
+                          |     
+                          |     
+    iss1_abc_feature_one (C7)   
+--------------------------------------------
+                                Code Review
+```
 
 After a Code Review, Assignee should fix all founded bugs, problems etc, and add corresponding fixes in the 
 merging branch. Each one commit should contain only one atomic fix.
 
-_**[git_diagram_fixes_applying]**_
+```
+                               (C4) dev
+                              / 
+                             /  
+                         (C5)  
+                          |     
+                          |     
+                         (C6)   
+                          |     
+                          |     
+                         (C7)   
+--------------------------------------------
+                          |     Code Review
+                         (C8)  \
+                          |     | Fixes for C6
+                         (C9)  /
+                          |
+                         (C10) Fix for C7
+                          |
+                         (C11) \
+                          |     | Fixes for C5
+                         (C12) /
+                          |
+    iss1_abc_feature_one (C13) Fix for C7
+--------------------------------------------
+                                Code Review
+```
 
 Then the Assignee should request a new Code Review. If all works correct, fix-commits should be squashed to a 
 corresponding feature commits with correct commit message and hashes.
 
+```
+C5 commit message header
+
+Commit message body.
+
+Contain C11 fix (C11 hash)
+    C11 message
+Contain C12 fix (C12 hash)
+    C12 message
+```
+
+```
+                                (C4) dev
+                               / 
+                              /  
+                         (C5')  
+                          |     
+                          |     
+                         (C6')   
+                          |     
+                          |     
+    iss1_abc_feature_one (C7')   
+--------------------------------------------
+                                Code Review
+```
+
 Then Assignee request the last Code Review and grant approve from the Code Reviewer. 
+
+```
+                                (C4) 
+                               / |
+                              /  |
+                         (C5')   |
+                          |      |
+                          |      |
+                         (C6')   |
+                          |      |
+                          |      |
+    iss1_abc_feature_one (C7')   |
+--------------------------------------------
+                          |     Code Review
+                           \     |
+                            '---(C8) dev
+```
 
 After that the Assignee can merge his branch to the **dev** by pressing the button.
 
 ### Feature branch caring
 
-_**[git_diagram_feature_branching]**_
+```
+                              (C4)
+                             / |
+                            /  |
+                        (C6)  (C5) dev 
+                         |        \
+                         |         \ 
+   iss1_cfg_feature_one (C7)        (C6')
+                         |           |
+                         |           |
+   iss1_abc_feature_one (C8)        (C7')
+                                     |
+                                     |
+                                    (C9) origin/iss1_cfg_feature_one
+```
 
 The Assignee should rebase his branch atop of the **dev** branch after each **dev** changing. Also he should notify all 
 participants of this Issue about the branch rebasing.
 
 Participants should rebase their commits atop of updated feature branch.
+
+```
+                              (C4)
+                             / |
+                            /  |
+                        (C6)  (C5) dev 
+                         |        \
+                         |         \ 
+                        (C7)        (C6')
+                         |           |
+                         |           |
+                        (C8)        (C7')
+                                     |
+                                     |
+                                    (C9) iss1_cfg_feature_one, origin/iss1_cfg_feature_one
+                                     |
+                                     |
+                                    (C8') iss1_abc_feature_one
+```
 
 Participants should be notified about creating Pull Requests and starting each Code Review.
 

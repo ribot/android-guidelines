@@ -74,3 +74,20 @@ participants of this Issue about the branch rebasing.
 Participants should rebase their commits atop of updated feature branch.
 
 Participants should be notified about creating Pull Requests and starting each Code Review.
+
+## Aliases and tools
+
+**Prettylog** is for nice looking full commit history showing. Add `--all` for remote branches including.
+```
+prettylog = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) 
+- %C(yellow)%aD%C(reset) %C(dim yellow)(%ar)%C(reset)%C(auto)%+d%n %<(80,trunc)%C(white)%s%C(reset)%n 
+%C(dim white)by %an%C(reset) %n'
+```
+
+**Prettybranches** is for nice looking only branches heads showing. Handy for observing the whole tree structure. 
+It includes `--all`.
+```
+prettybranches = log --graph --abbrev-commit --decorate --simplify-by-decoration --all 
+--format=format:'%C(bold blue)%h%C(reset) - %C(yellow)%aD%C(reset) 
+%C(dim yellow)(%ar)%C(reset)%C(auto)%+d%n %<(80,trunc)'
+```

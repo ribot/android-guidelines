@@ -4,7 +4,20 @@
 
 ### Pure Java
 
-[Project structure for pure Java]
+According to [Maven](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html) 
+or [Graddle](https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_project_layout) projects structure 
+new projects should realize structure like this:
+
+```
++ java-project-name
+    + src
+        + main
+            + java
+                + rape.brutal.project
+            + resources
+        + test
+            + java
+```
 
 ### Android
 

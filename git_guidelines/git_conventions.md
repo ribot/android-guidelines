@@ -24,6 +24,8 @@ Commit message header
 Details about the features and notes.
 ```
 
+Pull request name should starts from "Request to..." 
+
 ## Branching
 
 ```
@@ -264,6 +266,19 @@ Pull Request #15
 - Feature one 7f856c5
 - Feature two 8a3b57c
 ```
+
+Also it should contain links to corresponding resolving Issues for it automatic closing:
+ 
+```
+Pull Request #15
+- Base-file spliting b9863c5
+- Feature one 7f856c5
+- Feature two 8a3b57c
+
+Fixes #5
+Fixes #7 
+```
+https://github.com/blog/1506-closing-issues-via-pull-requests
 
 Merge-commit message should contain list of all branch commits:
 

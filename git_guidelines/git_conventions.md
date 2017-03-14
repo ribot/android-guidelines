@@ -11,6 +11,10 @@ Feature branches should be named by this pattern:
 where `issN` -- Issue number (i. e. `iss4`), `abc` -- initials of surname, name and patronymic (i. e. for Ivanov 
 Petr Alekseyevich it will be `ipa`), `issue_name` -- full Issue name.
 
+In case of initials conflict a more experieced collaborator should choose a nickname the size of three to six characters. 
+
+If experience difference is unclear, the right to choose is obtained with the help of a coin toss.
+
 Commit message header should not contain dot at the end.
 
 Commit message body should contain list with included features and optional details and notes:

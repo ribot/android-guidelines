@@ -1,15 +1,27 @@
 # Android Guidelines
 
-List of guidelines that we use at [ribot](http://ribot.co.uk) when developing for the __Android__ platform. 
+## Contents
 
-* [Project and code style guidelines](project_and_code_guidelines.md)
-* [Architecture Guidelines](architecture_guidelines/android_architecture.md)
+- Naming conventions
+- Code conventions
+- Git conventions
+- Dropbox Paper conventions
 
-### License
+## Reference
+
+Thanks to [ribot](http://ribot.co.uk) team for the code conventions base.
+
+https://github.com/ribot/android-guidelines/
 
 ```
 Copyright 2015 Ribot Ltd.
+Licensed under the Apache License, Version 2.0
+```
 
+## Licence
+
+```
+Copyright 2017 BrutalRape().
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at

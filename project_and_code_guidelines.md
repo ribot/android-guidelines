@@ -601,7 +601,7 @@ String names start with a prefix that identifies the section they belong to. For
 
 #### 2.3.2.3 Styles and Themes
 
-Unless the rest of resources, style names are written in __UpperCamelCase__.
+Unlike the rest of resources, style names are written in __UpperCamelCase__.
 
 ### 2.3.3 Attributes ordering
 

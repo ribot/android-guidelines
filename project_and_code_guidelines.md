@@ -425,7 +425,7 @@ For Fragments it is named `newInstance()` and handles the creation of the Fragme
 
 ```java
 public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment;
+	UserFragment fragment = new UserFragment();
 	Bundle args = new Bundle();
 	args.putParcelable(ARGUMENT_USER, user);
 	fragment.setArguments(args)

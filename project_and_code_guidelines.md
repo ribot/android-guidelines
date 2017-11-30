@@ -315,6 +315,7 @@ Example:
 
 ```java
 public class MainActivity extends Activity {
+
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private String mTitle;

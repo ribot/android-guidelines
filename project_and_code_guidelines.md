@@ -316,16 +316,18 @@ Example:
 ```java
 public class MainActivity extends Activity {
 
-	private String mTitle;
-    private TextView mTextViewTitle;
+    private static final String TAG = MainActivity.class.getSimpleName();
 
-    public void setTitle(String title) {
-    	mTitle = title;
-    }
+    private String mTitle;
+    private TextView mTextViewTitle;
 
     @Override
     public void onCreate() {
         ...
+    }
+
+    public void setTitle(String title) {
+    	mTitle = title;
     }
 
     private void setUpView() {

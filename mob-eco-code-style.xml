@@ -45,9 +45,6 @@
     <option name="ANNOTATION_PARAMETER_WRAP" value="1" />
   </JavaCodeStyleSettings>
   <Objective-C-extensions>
-    <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
-    <option name="RELEASE_STYLE" value="IVAR" />
-    <option name="TYPE_QUALIFIERS_PLACEMENT" value="BEFORE" />
     <file>
       <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Import" />
       <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Macro" />
@@ -73,6 +70,7 @@
     </extensions>
   </Objective-C-extensions>
   <XML>
+    <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
     <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
   </XML>
   <codeStyleSettings language="JAVA">
@@ -92,7 +90,7 @@
     <option name="THROWS_LIST_WRAP" value="1" />
     <option name="EXTENDS_KEYWORD_WRAP" value="1" />
     <option name="THROWS_KEYWORD_WRAP" value="1" />
-    <option name="METHOD_CALL_CHAIN_WRAP" value="1" />
+    <option name="METHOD_CALL_CHAIN_WRAP" value="2" />
     <option name="BINARY_OPERATION_WRAP" value="1" />
     <option name="BINARY_OPERATION_SIGN_ON_NEXT_LINE" value="true" />
     <option name="TERNARY_OPERATION_WRAP" value="1" />
@@ -372,16 +370,6 @@
       </rules>
     </arrangement>
   </codeStyleSettings>
-  <codeStyleSettings language="kotlin">
-    <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
-    <option name="CALL_PARAMETERS_WRAP" value="5" />
-    <option name="METHOD_PARAMETERS_WRAP" value="1" />
-    <indentOptions>
-      <option name="INDENT_SIZE" value="2" />
-      <option name="CONTINUATION_INDENT_SIZE" value="4" />
-      <option name="TAB_SIZE" value="2" />
-    </indentOptions>
-  </codeStyleSettings>
   <codeStyleSettings language="XML">
     <option name="FORCE_REARRANGE_MODE" value="1" />
     <indentOptions>
@@ -538,5 +526,16 @@
         </section>
       </rules>
     </arrangement>
+  </codeStyleSettings>
+  <codeStyleSettings language="kotlin">
+    <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
+    <option name="CALL_PARAMETERS_WRAP" value="5" />
+    <option name="METHOD_PARAMETERS_WRAP" value="1" />
+    <option name="METHOD_CALL_CHAIN_WRAP" value="2" />
+    <indentOptions>
+      <option name="INDENT_SIZE" value="2" />
+      <option name="CONTINUATION_INDENT_SIZE" value="4" />
+      <option name="TAB_SIZE" value="2" />
+    </indentOptions>
   </codeStyleSettings>
 </code_scheme>

@@ -1,3 +1,5 @@
+Thank you for your interest in ribot’s development work. Unfortunately there are no current plans to make any changes to this project in the near future, and it is not being maintained or updated. We hope you still find this a useful resource and you can check out the newest recommendations in [Android Jetpack](https://developer.android.com/jetpack/) for more ideas!
+
 # Android Guidelines
 
 List of guidelines that we use at [ribot](http://ribot.co.uk) when developing for the __Android__ platform. 

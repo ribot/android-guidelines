@@ -41,6 +41,7 @@ Naming conventions for icons (taken from [Android iconography guidelines](http:/
 | Status bar icons                | `ic_stat_notify`   | `ic_stat_notify_msg.png`     |
 | Tab icons                       | `ic_tab`           | `ic_tab_recent.png`          |
 | Dialog icons                    | `ic_dialog`        | `ic_dialog_info.png`         |
+| Images                          | `img_`             | `img_walkthourgh_one.png`    |
 
 Naming conventions for selector states:
 

@@ -554,18 +554,20 @@ Picasso.with(context)
 
 __Long parameters case__
 
-When a method has many parameters or its parameters are very long, we should break the line after every comma `,`
+When a method has many parameters or its parameters are very long, we should break the line after `(`, before `)`, and after every comma `,`.
 
 ```java
 loadPicture(context, "http://ribot.co.uk/images/sexyjoe.jpg", mImageViewProfilePicture, clickListener, "Title of the picture");
 ```
 
 ```java
-loadPicture(context,
-        "http://ribot.co.uk/images/sexyjoe.jpg",
-        mImageViewProfilePicture,
-        clickListener,
-        "Title of the picture");
+loadPicture(
+	context,
+	"http://ribot.co.uk/images/sexyjoe.jpg",
+	mImageViewProfilePicture,
+	clickListener,
+	"Title of the picture"
+);
 ```
 
 ### 2.2.15 RxJava chains styling

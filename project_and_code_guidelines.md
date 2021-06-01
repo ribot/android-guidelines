@@ -283,7 +283,7 @@ As a general rule, we use the class name as tag and we define it as a `static fi
 
 ```java
 public class MyClass {
-    private static final String TAG = "MyClass";
+    private static final String TAG = MyClass.class.getSimpleName();
 
     public myMethod() {
         Log.e(TAG, "My error message");
@@ -316,16 +316,18 @@ Example:
 ```java
 public class MainActivity extends Activity {
 
-	private String mTitle;
-    private TextView mTextViewTitle;
+    private static final String TAG = MainActivity.class.getSimpleName();
 
-    public void setTitle(String title) {
-    	mTitle = title;
-    }
+    private String mTitle;
+    private TextView mTextViewTitle;
 
     @Override
     public void onCreate() {
         ...
+    }
+
+    public void setTitle(String title) {
+    	mTitle = title;
     }
 
     private void setUpView() {
@@ -407,7 +409,7 @@ static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 
 ### 2.2.14 Arguments in Fragments and Activities
 
-When data is passed into an `Activity `or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
+When data is passed into an `Activity` or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
 
 When an `Activity` or `Fragment` expects arguments, it should provide a `public static` method that facilitates the creation of the relevant `Intent` or `Fragment`.
 
@@ -425,7 +427,7 @@ For Fragments it is named `newInstance()` and handles the creation of the Fragme
 
 ```java
 public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment;
+	UserFragment fragment = new UserFragment();
 	Bundle args = new Bundle();
 	args.putParcelable(ARGUMENT_USER, user);
 	fragment.setArguments(args)
@@ -527,7 +529,7 @@ public Observable<Location> syncLocations() {
 
 ### 2.3.1 Use self closing tags
 
-When an XML element doesn\'t have any contents, you __must__ use self closing tags.
+When an XML element doesn't have any contents, you __must__ use self closing tags.
 
 This is good:
 
@@ -587,7 +589,7 @@ Menu example:
 
 #### 2.3.2.2 Strings
 
-String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn\'t belong__ to any section, then you should follow the rules below:
+String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section, then you should follow the rules below:
 
 
 | Prefix             | Description                           |
@@ -601,7 +603,7 @@ String names start with a prefix that identifies the section they belong to. For
 
 #### 2.3.2.3 Styles and Themes
 
-Unless the rest of resources, style names are written in __UpperCamelCase__.
+Unlike the rest of resources, style names are written in __UpperCamelCase__.
 
 ### 2.3.3 Attributes ordering
 
@@ -626,7 +628,7 @@ Test methods are annotated with `@Test` and should generally start with the name
 
 Precondition and/or expected behaviour may not always be required if the test is clear enough without them.
 
-Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it\'s recommendable to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see what tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture).
+Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it's recommendable to split up the test class into multiple ones. For example, if the `DataManager` contains a lot of methods we may want to divide it into `DataManagerSignInTest`, `DataManagerLoadUsersTest`, etc. Generally you will be able to see what tests belong together because they have common [test fixtures](https://en.wikipedia.org/wiki/Test_fixture).
 
 ### 2.4.2 Espresso tests
 
